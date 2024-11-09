@@ -82,9 +82,10 @@ function Profile() {
             <div>
               <h2 className="text-lg font-semibold mb-2">Rating</h2>
               <div className="flex items-center justify-center">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className={`text-xl ${i < user.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
-                ))}
+                <StarRating rating={user.rating}/>
+              </div>
+              <div className="flex items-center justify-center">
+                <p>{user.rating} / 5</p>
               </div>
             </div>
 
