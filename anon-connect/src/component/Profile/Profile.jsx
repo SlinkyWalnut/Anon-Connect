@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import "./Profile.css"; 
 import {UserContext} from '../../App.js'; 
 import EventCreation from '../EventCreation/EventCreation.jsx';
+import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
 
 function Profile() {
   // const [userInfo, setUserInfo] = useState(null); 
@@ -28,32 +29,34 @@ function Profile() {
     (!eventsClicked ? <div className="profileContainer">
       <h1>{user.organization}</h1>
       <p>{user.description}</p>
-      <div className="leftSide">
-        <h2 className='text-5xl p-4'>Current Events</h2>
-        <ul className="eventsContainer">
-          {completedEvents.map((hosting) => (
-            <li>
-              <EventThread description={hosting.description} location={hosting.location}/>
-            </li>
-          ))}
-        </ul>
-        <h2 className='text-5xl p-4'>Past Events</h2>
-        <ul className="eventsContainer">
-          {currentEvents.map((hosting) => (
-            <li>
-              <EventThread description={hosting.description} location={hosting.location}/>
-            </li>
-          ))}
-        </ul>
-        {isLoggedIn && <button className='rounded-lg mr-4 bg-blue-700 text-white p-2 hover:opacity-70' onClick={handleEventsClicked}>Add Event</button>}
-      </div>
-      <div className="rightSide">
-        <h2 className='text-5xl p-4'>Rating</h2>
-        <p>{user.rating}</p>
-        <h2 className='text-5xl p-4'>Contact Us!</h2>
-        <p>{user.contactInfo}</p>
-      </div>
-    </div> : <EventCreation />)
+      <div className='events'>
+        <div className="leftSide">
+          <h2>Current Events</h2>
+          <ul className="eventsContainer">
+            {completedEvents.map((hosting) => (
+              <li>
+                <EventThread description={hosting.description} location={hosting.location}/>
+              </li>
+            ))}
+          </ul>
+          <h2>Past Events</h2>
+          <ul className="eventsContainer">
+            {currentEvents.map((hosting) => (
+              <li>
+                <EventThread description={hosting.description} location={hosting.location}/>
+              </li>
+            ))}
+          </ul>
+          {isLoggedIn && <button className='rounded-lg mr-4 bg-blue-700 text-white p-2 hover:opacity-70' onClick={handleEventsClicked}>Add Event</button>}
+        </div>
+        <div className="rightSide">
+          <h2>Rating</h2>
+          <p>{user.rating}</p>
+          <h2>Contact Us!</h2>
+          <p>{user.contactInfo}</p>
+        </div>
+        </div>
+      </div> : <EventCreation />)
   )
 }
 

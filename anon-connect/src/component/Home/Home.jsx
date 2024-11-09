@@ -3,6 +3,7 @@ import "./Home.css"
 import EventDisplay from '../EventDisplay/EventDisplay';
 import Login from '../Auth/Login/Login';
 import Profile from '../Profile/Profile';
+import EventItem from '../EventDisplay/EventItem/EventItem';
 
 
 
@@ -11,7 +12,7 @@ function Home() {
 
   const handleClicks = () => {
     if(actionClicked === 'organizer'){
-      return <Profile />
+      return <Login />
     } else if (actionClicked === 'events'){
       return <EventDisplay />
     } else {

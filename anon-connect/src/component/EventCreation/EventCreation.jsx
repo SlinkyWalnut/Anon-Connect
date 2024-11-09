@@ -3,14 +3,6 @@ import React from 'react'
 function EventCreation() {
 
 
-
-
-
-
-
-
-
-
   return (
     <div>
         <h1>Event Creation</h1>
