@@ -11,7 +11,7 @@ function Profile() {
     setEventsClicked(true); 
   }
 
-  const user = {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 5, events: [{name: "Consultation", completed: true}, {name: "Group Therapy", completed: true}, {name: "Movie Night", completed: false}, {name: "Pizza and Chat", completed: false}], contactInfo: "123-456-7890"}; 
+  const user = {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", location: "4531 Druggie Ave", rating: 5, events: [{name: "Consultation", completed: true}, {name: "Group Therapy", completed: true}, {name: "Movie Night", completed: false}, {name: "Pizza and Chat", completed: false}], contactInfo: "123-456-7890"}; 
   // const users = [
   //   {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7890"},
   //   {organization: "Narcotics Anonymous", description: "We host continuous meeting for recovering drug addicts!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7894"}
@@ -28,6 +28,7 @@ function Profile() {
     (!eventsClicked ? <div className="profileContainer">
       <h1>{user.organization}</h1>
       <p>{user.description}</p>
+<<<<<<< HEAD
       <div className='events'>
         <div className="leftSide">
           <h2>Current Events</h2>
@@ -51,6 +52,32 @@ function Profile() {
           <p>{user.contactInfo}</p>
         </div>
 
+=======
+      <div className="leftSide">
+        <h2>Current Events</h2>
+        <ul className="eventsContainer">
+          {completedEvents.map((hosting) => (
+            <li>
+              <EventThread description={hosting.description} location={hosting.location}/>
+            </li>
+          ))}
+        </ul>
+        <h2>Past Events</h2>
+        <ul className="eventsContainer">
+          {currentEvents.map((hosting) => (
+            <li>
+              <EventThread description={hosting.description} location={hosting.location}/>
+            </li>
+          ))}
+        </ul>
+        {isLoggedIn && <button className='rounded-lg mr-4 bg-blue-700 text-white p-2 hover:opacity-70' onClick={handleEventsClicked}>Add Event</button>}
+      </div>
+      <div className="rightSide">
+        <h2>Rating</h2>
+        <p>{user.rating}</p>
+        <h2>Contact Us!</h2>
+        <p>{user.contactInfo}</p>
+>>>>>>> aa7276023a680410ea917a8a51c9eeaf7c866a61
       </div>
     </div> : <EventCreation />)
   )
