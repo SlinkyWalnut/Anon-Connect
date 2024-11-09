@@ -13,18 +13,6 @@ function Profile() {
   };
 
   const user = {
-    organization: "Alcoholics Anonymous",
-    description: "We host continuous meetings for recovering alcoholics!",
-    rating: 5,
-    events: [
-      { name: "Consultation", completed: true, location: "4531 Druggie Ave", description: "Meet with a therapist to discuss your struggles with alcohol." },
-      { name: "Group Therapy", completed: true, location: "4531 Druggie Ave", description: "Meet with other struggling alcoholics and talk about your experience together." },
-      { name: "Movie Night", completed: false, location: "4531 Druggie Ave", description: "We're watching Coraline!!" },
-      { name: "Pizza and Chat", completed: false, location: "4531 Druggie Ave", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
-    ],
-    contactInfo: "123-456-7890"
-  };
-  const user = {
     organization: "Alcoholics Anonymous", 
     description: "We host continuous meeting for recovering alcoholics!", 
     location: "4531 Druggie Ave", rating: 5, 
