@@ -32,7 +32,7 @@
          addUserReviews = async (User, itemId, meet, review) => {
             try{
                 const result = await User.updateOne(
-                    {_id: itemId, 'Events.name': meet},
+                    {_id: itemId, 'Events._id': meet},
                     { $push: {'Events.$.Reviews': review}}
                 );
                 return result;

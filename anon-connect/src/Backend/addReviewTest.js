@@ -20,7 +20,7 @@ const Review = {
 }
 
 mongoose.connect(CONFIG.MONGO_URI).then(() =>{
-    userReviews.addUserReviews(User, ItemId, eventName, Review).then(() => {
+    userReviews.addUserReviews(User, ItemId, eventId, Review).then(() => {
         console.log('Review Added');
         mongoose.connection.close();
       })
