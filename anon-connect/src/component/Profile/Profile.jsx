@@ -3,12 +3,13 @@ import "./Profile.css";
 import { UserContext } from '../../App.js'; 
 import EventCreation from '../EventCreation/EventCreation.jsx';
 import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
+import EventItem from "../EventDisplay/EventItem/EventItem.jsx";
 import StarRating from './StarRating.jsx'; 
 
 function Profile() {
   const { isLoggedIn } = useContext(UserContext);
   const [openEventsCreation, setOpenEventsCreation] = useState(false); 
-
+  const [actionClicked, setActionClicked] = useState(null);
   const handleEventsClicked = () => {
     setOpenEventsCreation(!openEventsCreation); 
   };
