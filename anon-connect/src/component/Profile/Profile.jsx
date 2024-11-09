@@ -24,6 +24,26 @@ function Profile() {
     ],
     contactInfo: "123-456-7890"
   };
+  const user = {
+    organization: "Alcoholics Anonymous", 
+    description: "We host continuous meeting for recovering alcoholics!", 
+    location: "4531 Druggie Ave", rating: 5, 
+    events: [
+      {name: "Consultation", completed: true}, 
+      {name: "Group Therapy", completed: true}, 
+      {name: "Movie Night", completed: false}, 
+      {name: "Pizza and Chat", completed: false}], 
+      contactInfo: "123-456-7890"
+    }; 
+
+  // const users = [
+  //   {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7890"},
+  //   {organization: "Narcotics Anonymous", description: "We host continuous meeting for recovering drug addicts!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7894"}
+  // ];
+
+  useEffect(() => {
+
+  })
 
   const completedEvents = user.events.filter(event => event.completed);
   const currentEvents = user.events.filter(event => !event.completed);
