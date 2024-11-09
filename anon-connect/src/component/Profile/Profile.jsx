@@ -98,6 +98,8 @@ function Profile() {
           </div>
         </div>
       </div>
+      <EventCreation openCreation={openEventsCreation} closeCreation={setOpenEventsCreation}/>
+      </div>
     );
   }
 
