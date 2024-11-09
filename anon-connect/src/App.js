@@ -10,8 +10,11 @@ function UserProvider({children}) {
       username: '',
       password: '',
       organization: '',
+      description: '',
       website: '',
-      description: ''
+      contact: '', 
+      events: [{name: ''}, {name: ''}], 
+      rating: ''
     },
     isLoggedIn: false
   }); 

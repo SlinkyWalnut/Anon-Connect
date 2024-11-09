@@ -23,6 +23,7 @@ function Profile() {
       {name: "Pizza and Chat", completed: false}], 
       contactInfo: "123-456-7890"
     }; 
+
   // const users = [
   //   {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7890"},
   //   {organization: "Narcotics Anonymous", description: "We host continuous meeting for recovering drug addicts!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7894"}
@@ -35,8 +36,11 @@ function Profile() {
   const completedEvents = user.events.filter(hosting => hosting.completed);
   const currentEvents = user.events.filter(hosting => !hosting.completed);
 
+if(eventsClicked){
+<EventCreation />
+}else{
   return (
-    (!eventsClicked ? <div className="profileContainer">
+    <div className="profileContainer">
       <h1>{user.organization}</h1>
       <p>{user.description}</p>
       <div className='events'>
@@ -66,8 +70,10 @@ function Profile() {
           <p>{user.contactInfo}</p>
         </div>
         </div>
-      </div> : <EventCreation />)
+      </div>
+
   )
+}
 }
 
 export default Profile
