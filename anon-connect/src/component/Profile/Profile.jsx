@@ -28,7 +28,6 @@ function Profile() {
     (!eventsClicked ? <div className="profileContainer">
       <h1>{user.organization}</h1>
       <p>{user.description}</p>
-<<<<<<< HEAD
       <div className='events'>
         <div className="leftSide">
           <h2>Current Events</h2>
@@ -52,7 +51,6 @@ function Profile() {
           <p>{user.contactInfo}</p>
         </div>
 
-=======
       <div className="leftSide">
         <h2>Current Events</h2>
         <ul className="eventsContainer">
@@ -77,7 +75,7 @@ function Profile() {
         <p>{user.rating}</p>
         <h2>Contact Us!</h2>
         <p>{user.contactInfo}</p>
->>>>>>> aa7276023a680410ea917a8a51c9eeaf7c866a61
+      </div>
       </div>
     </div> : <EventCreation />)
   )
