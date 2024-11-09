@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
-
-function EventItem(props) {
+import EventDisplay from '../EventDisplay'
+function EventItem({name, description, attendees, location}) {
   
 
 
@@ -8,10 +8,24 @@ function EventItem(props) {
 
 
   return (
-    <div style={{borderRadius:0, color:'white', display:'flex', textAlign:'left', justifyContent:'left'}}>      
-      <h1>Title: {props.EventItem.eventTitle}</h1>
-      <p>Description: {props.EventItem.Description}</p>
-      <p>Location: {props.EventItem.Location}</p>
+    <div>
+      <div>
+        <h2 className='font-bold text-xl mb-4'>{name}</h2>
+        <p className='my-2'>{description}</p>
+      </div>
+
+      <div className=''>
+        
+      </div>
+      <div>
+
+      </div>
+      <div>
+
+      </div>
+      <div>
+
+      </div>
     </div>
   )
 }
