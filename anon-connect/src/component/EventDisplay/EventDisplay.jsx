@@ -3,7 +3,7 @@ import EventThread from './EventThread/EventThread';
 import EventItem from './EventItem/EventItem';
 
 function EventDisplay() {
-    const [currentItem, setCurrentItem] = useState(null); // Track clicked item
+    const [currentItem, setCurrentItem] = useState(null);
     
     const eventsList = [
         {
@@ -21,7 +21,7 @@ function EventDisplay() {
     ];
 
     const handleItemClick = (event_thread) => {
-        setCurrentItem(event_thread); // Set clicked item to state
+        setCurrentItem(event_thread); 
     };
 
     return (

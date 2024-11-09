@@ -16,7 +16,7 @@ function EventItem({ name, description, attendees = 0, location }) {
     <div>
     {actionClicked === 'Profile' ? (
         <Profile />
-      ) :<div className="p-6 bg-white shadow-lg rounded-lg flex gap-8">
+      ) :<div className="w-screen h-screen flex justify-center items-center bg-gray-50 p-6 bg-white shadow-lg rounded-lg flex gap-8">
           <div className="flex flex-1 space-y-4">
           {/* Left Side Content */}
           <div className="flex-1">
@@ -56,16 +56,18 @@ function EventItem({ name, description, attendees = 0, location }) {
               <p className="text-center text-gray-500">Map (Google Maps)</p>
             </div>
 
-            {/* RSVP Section */}
-            <div className="flex flex-col items-center">
-              <button
-                onClick={handleRsvpClick}
-                className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                RSVP!
-              </button>
-              <p className="text-xs text-gray-600 mt-1">Attendees: {rsvpCount}</p>
-            </div>
+             {/* RSVP Section */}
+             <div className="flex flex-col items-center">
+                <button
+                  onClick={handleRsvpClick}
+                  className={`w-full py-2 rounded-lg transition-colors ${
+                    rsvpClicked ? 'bg-gray-700' : 'bg-blue-500 hover:bg-blue-600'
+                  } text-white`}
+                >
+                  RSVP!
+                </button>
+                <p className="text-xs text-gray-600 mt-1">Attendees: {rsvpCount}</p>
+              </div>
           </div>
         </div>
 
