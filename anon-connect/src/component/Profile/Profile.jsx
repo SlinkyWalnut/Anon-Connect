@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'; 
 import "./Profile.css"; 
 import {UserContext} from '../../App.js'; 
+import EventCreation from '../EventCreation/EventCreation.jsx';
 
 function Profile() {
   // const [userInfo, setUserInfo] = useState(null); 
@@ -36,7 +37,7 @@ function Profile() {
         </ul>
         <h2>Past Events</h2>
         <ul className="eventsContainer">
-          {incompletedEvents.map((hosting, index) => (
+          {currentEvents.map((hosting, index) => (
             <li key={index} className="eventItem">{hosting.name}</li>
           ))}
         </ul>

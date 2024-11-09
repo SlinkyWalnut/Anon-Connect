@@ -2,7 +2,7 @@ import './App.css';
 import Home from './component/Home/Home';
 import { useState, createContext } from 'react';
 
-const UserContext = createContext(); 
+export const UserContext = createContext(); 
 
 function LoginCheck({children}) {
   const [isLoggedIn, isLoggedInSet] = useState(true); 
@@ -15,7 +15,10 @@ function LoginCheck({children}) {
 function App() {
   return (
     <div className="App">
-      <Home />
+      <LoginCheck>
+        <Home />
+
+      </LoginCheck>
     </div>
   );
 }

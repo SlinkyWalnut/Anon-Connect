@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./Home.css"
 import EventDisplay from '../EventDisplay/EventDisplay';
 import Login from '../Auth/Login/Login';
+import Profile from '../Profile/Profile';
 
 
 
@@ -10,7 +11,7 @@ function Home() {
 
   const handleClicks = () => {
     if(actionClicked === 'organizer'){
-      return <Login />
+      return <Profile />
     } else if (actionClicked === 'events'){
       return <EventDisplay />
     } else {
