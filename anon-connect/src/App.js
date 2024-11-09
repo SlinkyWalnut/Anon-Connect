@@ -4,21 +4,40 @@ import { useState, createContext } from 'react';
 
 export const UserContext = createContext(); 
 
-function LoginCheck({children}) {
-  const [isLoggedIn, isLoggedInSet] = useState(true); 
+function UserProvider({children}) {
+  const [userContext, setUserContext] = useState({
+    user:{
+      username: '',
+      password: '',
+      organization: '',
+      website: '',
+      description: ''
+    },
+    isLoggedIn: false
+  }); 
+  const context = {
+    user: userContext.user,
+    isLoggedIn: userContext.isLoggedIn,
+    setUser: (targetUser) => {
+      setUserContext({...userContext, user: targetUser});
+    },
+    setIsLoggedIn: (status) => {
+      setUserContext({...userContext, isLoggedIn: status})
+    }
+  }
  
   return (
-    <UserContext.Provider value={{ isLoggedIn }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={context}>{children}</UserContext.Provider>
   );
 }
 
 function App() {
   return (
     <div className="App">
-      <LoginCheck>
+      <UserProvider>
         <Home />
 
-      </LoginCheck>
+      </UserProvider>
     </div>
   );
 }
