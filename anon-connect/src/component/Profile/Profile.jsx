@@ -3,6 +3,7 @@ import "./Profile.css";
 import { UserContext } from '../../App.js'; 
 import EventCreation from '../EventCreation/EventCreation.jsx';
 import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
+import StarRating from './StarRating.jsx'; 
 
 function Profile() {
   const { isLoggedIn } = useContext(UserContext);
@@ -15,13 +16,13 @@ function Profile() {
   const user = {
     organization: "Alcoholics Anonymous", 
     description: "We host continuous meeting for recovering alcoholics!", 
-    location: "4531 Druggie Ave", rating: 5, 
+    location: "4531 Druggie Ave", rating: 3.5, 
     events: [
       {name: "Consultation", completed: true}, 
       {name: "Group Therapy", completed: true}, 
       {name: "Movie Night", completed: false}, 
       {name: "Pizza and Chat", completed: false}], 
-      contactInfo: "123-456-7890"
+      contactInfo: ["123-456-7890" , 'WeHelpDruggies@AcolAnon.org'],
     }; 
 
   // const users = [
@@ -44,26 +45,26 @@ function Profile() {
             <p className="mt-2">{user.description}</p>
           </div>
 
-          <div className="events flex">
-            {/* Left Side: List of Events */}
-            <div className="leftSide w-2/3 bg-light text-white p-4 rounded-l-lg">
-              <h2 className="text-xl font-semibold mb-4">Current Events</h2>
-              <ul className="eventsContainer space-y-2">
-                {currentEvents.map((event, index) => (
-                  <li key={index} className="bg-gray-800 p-3 rounded">
-                    <EventThread description={event.description} location={event.location} />
-                  </li>
-                ))}
-              </ul>
-              
-              <h2 className="text-xl font-semibold mt-6 mb-4">Past Events</h2>
-              <ul className="eventsContainer space-y-2">
-                {completedEvents.map((event, index) => (
-                  <li key={index} className="bg-gray-700 p-3 rounded">
-                    <EventThread description={event.description} location={event.location} />
-                  </li>
-                ))}
-              </ul>
+        <div className="events flex">
+          {/* Left Side: List of Events */}
+          <div className="leftSide w-2/3 bg-light text-white p-4 rounded-l-lg">
+            <h2 className="text-xl font-semibold mb-4">Current Events</h2>
+            <ul className="eventsContainer space-y-2">
+              {currentEvents.map((event, index) => (
+                <li key={index} className="bg-gray-800 p-3 rounded">
+                  <EventThread description={event.description} location={event.location} />
+                </li>
+              ))}
+            </ul>
+            
+            <h2 className="text-xl font-semibold mt-6 mb-4">Past Events</h2>
+            <ul className="eventsContainer space-y-2">
+              {completedEvents.map((event, index) => (
+                <li key={index} className="bg-gray-700 p-3 rounded">
+                  <EventThread description={event.description} location={event.location} />
+                </li>
+              ))}
+            </ul>
 
               {isLoggedIn && (
                 <button 
@@ -75,29 +76,27 @@ function Profile() {
               )}
             </div>
 
-            {/* Right Side: Rating and Contact Us */}
-            <div className="rightSide w-1/3 p-6 bg-white text-black rounded-r-lg flex flex-col space-y-6">
-              {/* Rating */}
-              <div>
-                <h2 className="text-lg font-semibold mb-2">Rating</h2>
-                <div className="flex items-center justify-center">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className={`text-xl ${i < user.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
-                  ))}
-                </div>
+          {/* Right Side: Rating and Contact Us */}
+          <div className="rightSide w-1/3 p-6 bg-white text-black rounded-r-lg flex flex-col space-y-6">
+            {/* Rating */}
+            <div>
+              <h2 className="text-lg font-semibold mb-2">Rating</h2>
+              <div className="flex items-center justify-center">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className={`text-xl ${i < user.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
+                ))}
               </div>
+            </div>
 
-              {/* Contact Us */}
-              <div className="p-4 bg-gray-100 rounded-lg">
-                <h2 className="underline text-lg font-semibold mb-2">Contact Us!</h2>
-                <ul className="list-disc ml-6">
-                  <li>{user.contactInfo}</li>
-                </ul>
-              </div>
+            {/* Contact Us */}
+            <div className="p-4 bg-gray-100 rounded-lg">
+              <h2 className="underline text-lg font-semibold mb-2">Contact Us!</h2>
+              <ul className="list-disc ml-6">
+                <li>{user.contactInfo}</li>
+              </ul>
             </div>
           </div>
         </div>
-        <EventCreation openCreation={openEventsCreation} closeCreation={setOpenEventsCreation} />
       </div>
     );
   }
