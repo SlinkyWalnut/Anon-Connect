@@ -16,7 +16,7 @@ function EventItem({ name, description, attendees = 0, location }) {
     <div>
     {actionClicked === 'Profile' ? (
         <Profile />
-      ) :<div className="p-6 bg-white shadow-lg rounded-lg flex gap-8">
+      ) :<div className="w-screen h-screen flex justify-center items-center bg-gray-50 p-6 bg-white shadow-lg rounded-lg flex gap-8">
           <div className="flex flex-1 space-y-4">
           {/* Left Side Content */}
           <div className="flex-1">
