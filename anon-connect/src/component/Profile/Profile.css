@@ -5,9 +5,13 @@
     box-shadow: '0 4px 8px rgba(0, 0, 0, 0.1)'; 
     font-family: 'Courier New, monospace';
 }
-
+.events{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 .leftSide{
-    width: '30%';
+    width: 65%;
     padding: '20px';
     background-color: #f4f4f4;
     border-radius: 8px;
@@ -15,7 +19,7 @@
 }
 
 .rightSide{
-    width: '65%';
+    width: 30%;
     padding: '20px'; 
     background-color: #fff;
     border-radius: 8px;

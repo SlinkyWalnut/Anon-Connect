@@ -13,7 +13,7 @@ function EventThread({description, location, name}) {
       <div><h2 className='font-bold text-xl mb-4'>{name}</h2></div>
       <p className='my-2'>{description}</p>
       <p>Location: {location}</p>
-    </div>: <EventItem event/>
+    </div>: <EventItem/>
     )
   )
 }

@@ -11,7 +11,7 @@ function Home() {
 
   const handleClicks = () => {
     if(actionClicked === 'organizer'){
-      return <Profile />
+      return <Login />
     } else if (actionClicked === 'events'){
       return <EventDisplay />
     } else {

@@ -22,7 +22,7 @@ function EventDisplay() {
     <div>
         <h3 className='text-5xl my-8'>Events</h3>
         <div className='flex justify-center my-8'>
-            <div className='p-2 mx-6 border border-black rounded-md' o>
+            <div className='p-2 mx-6 border border-black rounded-md'>
                 {eventsList.map(event => (
                     <EventThread description ={event.description} location={event.location} name={event.name}/>
 

@@ -28,26 +28,29 @@ function Profile() {
     (!eventsClicked ? <div className="profileContainer">
       <h1>{user.organization}</h1>
       <p>{user.description}</p>
-      <div className="leftSide">
-        <h2>Current Events</h2>
-        <ul className="eventsContainer">
-          {completedEvents.map((hosting, index) => (
-            <li key={index} className="eventItem">{hosting.name}</li>
-          ))}
-        </ul>
-        <h2>Past Events</h2>
-        <ul className="eventsContainer">
-          {currentEvents.map((hosting, index) => (
-            <li key={index} className="eventItem">{hosting.name}</li>
-          ))}
-        </ul>
-        {isLoggedIn && <button className="addEventButton" onClick={handleEventsClicked}>Add Event</button>}
-      </div>
-      <div className="rightSide">
-        <h2>Rating</h2>
-        <p>{user.rating}</p>
-        <h2>Contact Us!</h2>
-        <p>{user.contactInfo}</p>
+      <div className='events'>
+        <div className="leftSide">
+          <h2>Current Events</h2>
+          <ul className="eventsContainer">
+            {completedEvents.map((hosting, index) => (
+              <li key={index} className="eventItem">{hosting.name}</li>
+            ))}
+          </ul>
+          <h2>Past Events</h2>
+          <ul className="eventsContainer">
+            {currentEvents.map((hosting, index) => (
+              <li key={index} className="eventItem">{hosting.name}</li>
+            ))}
+          </ul>
+          {isLoggedIn && <button className="addEventButton" onClick={handleEventsClicked}>Add Event</button>}
+        </div>
+        <div className="rightSide">
+          <h2>Rating</h2>
+          <p>{user.rating}</p>
+          <h2>Contact Us!</h2>
+          <p>{user.contactInfo}</p>
+        </div>
+
       </div>
     </div> : <EventCreation />)
   )
