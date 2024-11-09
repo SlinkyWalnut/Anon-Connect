@@ -12,7 +12,7 @@ const EventMap = ({ eventsList }) => {
     if (loaderRef.current) return;
 
     loaderRef.current = new Loader({
-      apiKey: '', // Replace with your valid API Key
+      apiKey: process.env.REACT_APP_API_KEY, // Use process.env to access the API key
       version: 'weekly',
       libraries: ['maps', 'marker'], // Specify libraries once
     });
@@ -57,3 +57,4 @@ const EventMap = ({ eventsList }) => {
 };
 
 export default EventMap;
+

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import CONFIG from './config.js';
-import createUser from './CreateUser.js';
+import createUser from './createUser.js';
 
 
 
