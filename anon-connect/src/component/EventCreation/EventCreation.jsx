@@ -1,11 +1,11 @@
 import React from 'react'
+import Modal from '../Modal/Modal'
 
-function EventCreation() {
+function EventCreation({openCreation, closeCreation}) {
 
 
   return (
-    <div>
-        <h1>Event Creation</h1>
+    <Modal title={"Event Creation"} isOpen={openCreation} close={closeCreation}>
         <form>
             <label for='eventName' >Event Name</label>
             <input type="text" id="eventName" name="eventName"/>
@@ -28,9 +28,7 @@ function EventCreation() {
             <input type="submit" name="Submit"/>
         </form>
 
-
-
-    </div>
+    </Modal>
   )
 }
 
