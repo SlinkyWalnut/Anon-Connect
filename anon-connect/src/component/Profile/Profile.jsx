@@ -3,6 +3,7 @@ import "./Profile.css";
 import {UserContext} from '../../App.js'; 
 import EventCreation from '../EventCreation/EventCreation.jsx';
 import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
+import StarRating from './StarRating.jsx'; 
 
 function Profile() {
   // const [userInfo, setUserInfo] = useState(null); 
@@ -12,7 +13,7 @@ function Profile() {
     setEventsClicked(true); 
   }
 
-  const user = {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 5, 
+  const user = {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 3.5, 
                 events: [{name: "Consultation", completed: true, location: "4531 Druggie Ave", description: "Meet with a therapist to discuss your struggles with alcohol."}, 
                         {name: "Group Therapy", completed: true, location: "4531 Druggie Ave", description: "Meet with other struggling alcoholics and talk about your experience together."},
                         {name: "Movie Night", completed: false, location: "4531 Druggie Ave", description: "We're watching Coraline!!"}, 
@@ -38,7 +39,7 @@ function Profile() {
         <div className="leftSide">
           <h2>Current Events</h2>
           <ul className="eventsContainer">
-            {completedEvents.map((hosting) => (
+            {currentEvents.map((hosting) => (
               <li>
                 <EventThread description={hosting.description} location={hosting.location}/>
               </li>
@@ -46,7 +47,7 @@ function Profile() {
           </ul>
           <h2>Past Events</h2>
           <ul className="eventsContainer">
-            {currentEvents.map((hosting) => (
+            {completedEvents.map((hosting) => (
               <li>
                 <EventThread description={hosting.description} location={hosting.location}/>
               </li>
@@ -56,7 +57,8 @@ function Profile() {
         </div>
         <div className="rightSide">
           <h2>Rating</h2>
-          <p>{user.rating}</p>
+          <StarRating rating={user.rating}/>
+          <p>{user.rating} / 5</p>
           <h2>Contact Us!</h2>
           <p>{user.contactInfo}</p>
         </div>
