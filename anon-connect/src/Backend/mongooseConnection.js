@@ -9,7 +9,7 @@ mongoose.connect(CONFIG.MONGO_URI)
 .then(() => {
 
 
-const Company = createUser('Function Test', 'NewPassword', 'Test Org 2', 'Company that helps people');
+const Company = createUser('Function Test 2', 'NewPassword', 'Test Org 2', 'Company that helps people');
 
 
    return Company.save();

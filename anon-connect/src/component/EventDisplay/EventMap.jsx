@@ -12,7 +12,7 @@ const EventMap = ({ eventsList }) => {
     if (loaderRef.current) return;
 
     loaderRef.current = new Loader({
-      apiKey: 'AIzaSyAI9qIEtiKAunSO0KOX7TNvKUdQOAyHxd8', // Replace with your valid API Key
+      apiKey: '', // Replace with your valid API Key
       version: 'weekly',
       libraries: ['maps', 'marker'], // Specify libraries once
     });
@@ -20,7 +20,7 @@ const EventMap = ({ eventsList }) => {
     loaderRef.current.load().then(() => {
       // Once the Google Maps API is loaded, initialize map
       const mapInstance = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 40.7128, lng: -74.0060 }, // Default to NYC for example, adjust if needed
+        center: { lat: 40.7128, lng: -30.0060 }, // Default to NYC for example
         zoom: 10,
       });
       setMap(mapInstance);
@@ -28,10 +28,7 @@ const EventMap = ({ eventsList }) => {
       // Create LatLngBounds object to adjust bounds dynamically
       const bounds = new google.maps.LatLngBounds();
 
-      // Check if eventsList is an array (for multiple events) or a single event
-      const eventArray = Array.isArray(eventsList) ? eventsList : [eventsList];
-
-      eventArray.forEach((event) => {
+      eventsList.forEach((event) => {
         const marker = new google.maps.Marker({
           position: event.coordinates,
           map: mapInstance,
