@@ -24,7 +24,6 @@ function EventDisplay() {
         setCurrentItem(event_thread); // Set clicked item to state
     };
 
-<<<<<<< HEAD
     return (
         currentItem ? (
             <EventItem
@@ -54,17 +53,6 @@ function EventDisplay() {
                     <div className='flex display-left'>
                     </div>
                 </div>
-=======
-  return (
-    <div>
-        <h3 className='text-5xl my-8'>Events</h3>
-        <div className='flex justify-center my-8'>
-            <div className='p-2 mx-6 border border-black rounded-md'>
-                {eventsList.map(event => (
-                    <EventThread description ={event.description} location={event.location} name={event.name}/>
-
-                ))}
->>>>>>> 3eea48c85946aca2a3780c26b86b44c59e2ddfba
             </div>
         )
     );

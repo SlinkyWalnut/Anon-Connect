@@ -25,8 +25,11 @@ function Profile() {
   const completedEvents = user.events.filter(hosting => hosting.completed);
   const currentEvents = user.events.filter(hosting => !hosting.completed);
 
+if(eventsClicked){
+<EventCreation />
+}else{
   return (
-    (!eventsClicked ? <div className="profileContainer">
+    <div className="profileContainer">
       <h1>{user.organization}</h1>
       <p>{user.description}</p>
       <div className='events'>
@@ -56,8 +59,10 @@ function Profile() {
           <p>{user.contactInfo}</p>
         </div>
         </div>
-      </div> : <EventCreation />)
+      </div>
+
   )
+}
 }
 
 export default Profile
