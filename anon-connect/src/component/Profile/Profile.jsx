@@ -52,7 +52,7 @@ function Profile() {
             <ul className="eventsContainer space-y-2">
               {currentEvents.map((event, index) => (
                 <li key={index} className="bg-gray-800 p-3 rounded">
-                  <EventThread description={event.description} location={event.location} />
+                  <EventThread name={event.name} location={user.location} />
                 </li>
               ))}
             </ul>
@@ -61,7 +61,7 @@ function Profile() {
             <ul className="eventsContainer space-y-2">
               {completedEvents.map((event, index) => (
                 <li key={index} className="bg-gray-700 p-3 rounded">
-                  <EventThread description={event.description} location={event.location} />
+                  <EventThread name={event.name} location={user.location} />
                 </li>
               ))}
             </ul>
@@ -93,7 +93,9 @@ function Profile() {
             <div className="p-4 bg-gray-100 rounded-lg">
               <h2 className="underline text-lg font-semibold mb-2">Contact Us!</h2>
               <ul className="list-disc ml-6">
-                <li>{user.contactInfo}</li>
+                {user.contactInfo.map((info,index) => (
+                  <li key={index}>{info}</li>
+                ))}
               </ul>
             </div>
           </div>
