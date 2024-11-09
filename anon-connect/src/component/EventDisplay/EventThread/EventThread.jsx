@@ -1,25 +1,11 @@
 import React from 'react'
 
-import EventItem from '../EventItem/EventItem'
-
-function EventThread() {
-  
-  
-  
-  
-  
+function EventThread({description, location}) {
   return (
-    <div>
-      Event Thread
-      <div style={{display:'flex', justifyContent:'center', alignItems:'center', backgroundColor:'black'}}>
-        < EventItem 
-        EventItem = {{ eventTitle:"Druggies stop by", Description:"Here we help druggies go cold turkey by locking them up", Location:"My basement"}} 
-        />
-
-
-      </div>
-
-
+    <div className='border my-2 border-black rounded p-2'>
+      <div><h2 className='font-bold text-xl mb-4'>Event Title</h2></div>
+      <p className='my-2'>{description}</p>
+      <p>Location: {location}</p>
     </div>
   )
 }
