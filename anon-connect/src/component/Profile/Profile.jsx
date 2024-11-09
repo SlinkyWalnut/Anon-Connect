@@ -3,6 +3,7 @@ import "./Profile.css";
 import { UserContext } from '../../App.js'; 
 import EventCreation from '../EventCreation/EventCreation.jsx';
 import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
+import StarRating from './StarRating.jsx'; 
 
 function Profile() {
   const { isLoggedIn } = useContext(UserContext);
@@ -15,7 +16,7 @@ function Profile() {
   const user = {
     organization: "Alcoholics Anonymous", 
     description: "We host continuous meeting for recovering alcoholics!", 
-    location: "4531 Druggie Ave", rating: 5, 
+    location: "4531 Druggie Ave", rating: 3.5, 
     events: [
       {name: "Consultation", completed: true}, 
       {name: "Group Therapy", completed: true}, 
@@ -84,9 +85,10 @@ function Profile() {
             <div>
               <h2 className="text-lg font-semibold mb-2">Rating</h2>
               <div className="flex items-center justify-center">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className={`text-xl ${i < user.rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
-                ))}
+                <StarRating rating={user.rating}/>
+              </div>
+              <div className="flex items-center justify-center">
+                <p>{user.rating} / 5</p>
               </div>
             </div>
 
