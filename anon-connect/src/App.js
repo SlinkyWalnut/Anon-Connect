@@ -1,5 +1,5 @@
 import './App.css';
-import Home from './component/Home/Home';
+import Home from './component/Home/Home.jsx';
 import { useState, createContext } from 'react';
 
 export const UserContext = createContext(); 
