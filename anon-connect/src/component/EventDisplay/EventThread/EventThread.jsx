@@ -11,9 +11,9 @@ function EventThread() {
   return (
     <div>
       Event Thread
-      <div style={{display:flex, justifyContent:center, alignItems:center}}>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center', backgroundColor:'black'}}>
         < EventItem 
-        EventItem = {{eventTitle:"Druggies stop by", Description:"Here we help druggies go cold turkey by locking them up", Location:"My basement"}} 
+        EventItem = {{ eventTitle:"Druggies stop by", Description:"Here we help druggies go cold turkey by locking them up", Location:"My basement"}} 
         />
 
 
