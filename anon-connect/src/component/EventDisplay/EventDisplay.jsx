@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EventThread from './EventThread/EventThread';
 import EventItem from './EventItem/EventItem';
+import "./EventDisplay.css"
 
 function EventDisplay() {
     const [currentItem, setCurrentItem] = useState(null);
@@ -35,7 +36,7 @@ function EventDisplay() {
             <div>
                 <h3 className='text-5xl my-8'>Events</h3>
                 <div className='flex justify-center my-8'>
-                    <div className='p-2 mx-6 border border-black rounded-md'>
+                    <div className='event-container'>
                         {eventsList.map(event_thread => (
                             <div 
                                 key={event_thread.name}

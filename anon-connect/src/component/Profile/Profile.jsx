@@ -19,10 +19,10 @@ function Profile() {
     description: "We host continuous meeting for recovering alcoholics!", 
     location: "4531 Druggie Ave", rating: 3.5, 
     events: [
-      {name: "Consultation", completed: true}, 
-      {name: "Group Therapy", completed: true}, 
-      {name: "Movie Night", completed: false}, 
-      {name: "Pizza and Chat", completed: false}], 
+      {name: "Consultation", completed: true, location: "4531 Druggie Ave", description: "Meet with a therapist to discuss your struggles with alcohol."}, 
+      {name: "Group Therapy", completed: true, location: "4531 Druggie Ave", description: "Meet with other struggling alcoholics and talk about your experience together."}, 
+      {name: "Movie Night", completed: false, location: "4531 Druggie Ave", description: "We're watching Coraline!!"}, 
+      {name: "Pizza and Chat", completed: false, location: "4531 Druggie Ave", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!"}], 
       contactInfo: ["123-456-7890" , 'WeHelpDruggies@AcolAnon.org'],
     }; 
 
@@ -39,6 +39,10 @@ function Profile() {
   const currentEvents = user.events.filter(event => !event.completed);
     return (
       <div>
+      {actionClicked === 'Event Item' ? (
+        <EventItem />
+      ) : 
+      <div>
         <div className="profileContainer">
           {/* Banner */}
           <div className="banner bg-blue-800 text-white p-6 mb-4 rounded-t-lg text-center relative" >
@@ -53,7 +57,7 @@ function Profile() {
             <h2 className="text-xl font-semibold mb-4">Current Events</h2>
             <ul className="eventsContainer space-y-2">
               {currentEvents.map((event, index) => (
-                <li key={index} className="bg-gray-800 p-3 rounded">
+                <li onClick={() => setActionClicked('Event Item')} key={index} className="cursor-pointer bg-gray-800 text-gray-300 p-3 rounded hover:bg-gray-400 hover:text-brown-800 hover:font-bold transition">
                   <EventThread description={event.description} location={event.location} />
                 </li>
               ))}
@@ -62,7 +66,7 @@ function Profile() {
             <h2 className="text-xl font-semibold mt-6 mb-4">Past Events</h2>
             <ul className="eventsContainer space-y-2">
               {completedEvents.map((event, index) => (
-                <li key={index} className="bg-gray-700 p-3 rounded">
+                <li onClick={() => setActionClicked('Event Item')} key={index} className="cursor-pointer bg-gray-700 text-gray-200 p-3 rounded hover:bg-gray-400 hover:text-brown-800 hover:font-bold transition">
                   <EventThread description={event.description} location={event.location} />
                 </li>
               ))}
@@ -95,6 +99,8 @@ function Profile() {
         </div>
       </div>
       <EventCreation openCreation={openEventsCreation} closeCreation={setOpenEventsCreation}/>
+      </div>
+    }
       </div>
     );
   }
