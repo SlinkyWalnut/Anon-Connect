@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import "./Home.css"
 import EventDisplay from '../EventDisplay/EventDisplay';
 import Login from '../Auth/Login/Login';
