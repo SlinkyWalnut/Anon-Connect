@@ -41,7 +41,8 @@ function Profile() {
       <div>
         <div className="profileContainer">
           {/* Banner */}
-          <div className="banner bg-blue-800 text-white p-6 mb-4 rounded-t-lg text-center">
+          <div className="banner bg-blue-800 text-white p-6 mb-4 rounded-t-lg text-center relative" >
+          {isLoggedIn && <button className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">Sign Out</button>}
             <h1 className="text-4xl font-bold">{user.organization}</h1>
             <p className="mt-2">{user.description}</p>
           </div>
@@ -68,12 +69,7 @@ function Profile() {
             </ul>
 
               {isLoggedIn && (
-                <button 
-                  className="mt-4 rounded-lg bg-blue-700 text-white p-2 hover:opacity-70"
-                  onClick={handleEventsClicked}
-                >
-                  Add Event
-                </button>
+                <button className="mt-4 rounded-lg bg-blue-700 text-white p-2 hover:opacity-70" onClick={handleEventsClicked} >Add Event</button>
               )}
             </div>
 
@@ -91,11 +87,9 @@ function Profile() {
             </div>
 
             {/* Contact Us */}
-            <div className="p-4 bg-gray-100 rounded-lg">
+            <div className="p-4 bg-gray-100 rounded-lg w-full">
               <h2 className="underline text-lg font-semibold mb-2">Contact Us!</h2>
-              <ul className="list-disc ml-6">
-                <li>{user.contactInfo}</li>
-              </ul>
+                <p>{user.contactInfo}</p>
             </div>
           </div>
         </div>
