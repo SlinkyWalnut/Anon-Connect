@@ -33,17 +33,21 @@ function Profile() {
         <div className="leftSide">
           <h2>Current Events</h2>
           <ul className="eventsContainer">
-            {completedEvents.map((hosting, index) => (
-              <li key={index} className="eventItem">{hosting.name}</li>
+            {completedEvents.map((hosting) => (
+              <li>
+                <EventThread description={hosting.description} location={hosting.location}/>
+              </li>
             ))}
           </ul>
           <h2>Past Events</h2>
           <ul className="eventsContainer">
-            {currentEvents.map((hosting, index) => (
-              <li key={index} className="eventItem">{hosting.name}</li>
+            {currentEvents.map((hosting) => (
+              <li>
+                <EventThread description={hosting.description} location={hosting.location}/>
+              </li>
             ))}
           </ul>
-          {isLoggedIn && <button className="addEventButton" onClick={handleEventsClicked}>Add Event</button>}
+          {isLoggedIn && <button className='rounded-lg mr-4 bg-blue-700 text-white p-2 hover:opacity-70' onClick={handleEventsClicked}>Add Event</button>}
         </div>
         <div className="rightSide">
           <h2>Rating</h2>
@@ -51,34 +55,8 @@ function Profile() {
           <h2>Contact Us!</h2>
           <p>{user.contactInfo}</p>
         </div>
-
-      <div className="leftSide">
-        <h2>Current Events</h2>
-        <ul className="eventsContainer">
-          {completedEvents.map((hosting) => (
-            <li>
-              <EventThread description={hosting.description} location={hosting.location}/>
-            </li>
-          ))}
-        </ul>
-        <h2>Past Events</h2>
-        <ul className="eventsContainer">
-          {currentEvents.map((hosting) => (
-            <li>
-              <EventThread description={hosting.description} location={hosting.location}/>
-            </li>
-          ))}
-        </ul>
-        {isLoggedIn && <button className='rounded-lg mr-4 bg-blue-700 text-white p-2 hover:opacity-70' onClick={handleEventsClicked}>Add Event</button>}
-      </div>
-      <div className="rightSide">
-        <h2>Rating</h2>
-        <p>{user.rating}</p>
-        <h2>Contact Us!</h2>
-        <p>{user.contactInfo}</p>
-      </div>
-      </div>
-    </div> : <EventCreation />)
+        </div>
+      </div> : <EventCreation />)
   )
 }
 
