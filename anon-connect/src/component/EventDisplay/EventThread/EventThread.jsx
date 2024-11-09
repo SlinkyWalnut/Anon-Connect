@@ -12,7 +12,6 @@ function EventThread({description, location, name}) {
       <p className='my-2'>{description}</p>
       <p>Location: {location}</p>
     </div>
-
     )
 }
 
