@@ -10,7 +10,7 @@ function Profile() {
     setEventsClicked(true); 
   }
 
-  const user = {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 5, events: [{name: "Consultation", completed: true}, {name: "Group Therapy", completed: true}, {name: "Movie Night", completed: false}, {name: "Pizza and Chat", completed: false}], contactInfo: "123-456-7890"}; 
+  const user = {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", location: "4531 Druggie Ave", rating: 5, events: [{name: "Consultation", completed: true}, {name: "Group Therapy", completed: true}, {name: "Movie Night", completed: false}, {name: "Pizza and Chat", completed: false}], contactInfo: "123-456-7890"}; 
   // const users = [
   //   {organization: "Alcoholics Anonymous", description: "We host continuous meeting for recovering alcoholics!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7890"},
   //   {organization: "Narcotics Anonymous", description: "We host continuous meeting for recovering drug addicts!", rating: 5, events: ["hi", "hi2"], contactInfo: "123-456-7894"}
@@ -30,17 +30,21 @@ function Profile() {
       <div className="leftSide">
         <h2>Current Events</h2>
         <ul className="eventsContainer">
-          {completedEvents.map((hosting, index) => (
-            <li key={index} className="eventItem">{hosting.name}</li>
+          {completedEvents.map((hosting) => (
+            <li>
+              <EventThread description={hosting.description} location={hosting.location}/>
+            </li>
           ))}
         </ul>
         <h2>Past Events</h2>
         <ul className="eventsContainer">
-          {incompletedEvents.map((hosting, index) => (
-            <li key={index} className="eventItem">{hosting.name}</li>
+          {currentEvents.map((hosting) => (
+            <li>
+              <EventThread description={hosting.description} location={hosting.location}/>
+            </li>
           ))}
         </ul>
-        {isLoggedIn && <button className="addEventButton" onClick={handleEventsClicked}>Add Event</button>}
+        {isLoggedIn && <button className='rounded-lg mr-4 bg-blue-700 text-white p-2 hover:opacity-70' onClick={handleEventsClicked}>Add Event</button>}
       </div>
       <div className="rightSide">
         <h2>Rating</h2>
