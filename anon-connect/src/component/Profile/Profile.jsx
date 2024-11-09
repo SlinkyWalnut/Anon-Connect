@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'; 
 import "./Profile.css"; 
 import {UserContext} from '../../App.js'; 
+import EventCreation from '../EventCreation/EventCreation.jsx';
 
 function Profile() {
   // const [userInfo, setUserInfo] = useState(null); 
