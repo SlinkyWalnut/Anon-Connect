@@ -21,7 +21,7 @@ function Profile() {
       {name: "Group Therapy", completed: true}, 
       {name: "Movie Night", completed: false}, 
       {name: "Pizza and Chat", completed: false}], 
-      contactInfo: "123-456-7890"
+      contactInfo: ["123-456-7890" , 'WeHelpDruggies@AcolAnon.org'],
     }; 
 
   // const users = [
@@ -54,7 +54,7 @@ function Profile() {
             <ul className="eventsContainer space-y-2">
               {currentEvents.map((event, index) => (
                 <li key={index} className="bg-gray-800 p-3 rounded">
-                  <EventThread description={event.description} location={event.location} />
+                  <EventThread name={event.name} location={user.location} />
                 </li>
               ))}
             </ul>
@@ -63,7 +63,7 @@ function Profile() {
             <ul className="eventsContainer space-y-2">
               {completedEvents.map((event, index) => (
                 <li key={index} className="bg-gray-700 p-3 rounded">
-                  <EventThread description={event.description} location={event.location} />
+                  <EventThread name={event.name} location={user.location} />
                 </li>
               ))}
             </ul>
@@ -92,10 +92,12 @@ function Profile() {
 
             {/* Contact Us */}
             <div className="p-4 bg-gray-100 rounded-lg">
-              <h2 className="underline text-lg font-semibold mb-2">Contact Us!</h2>
-              <ul className="list-disc ml-6">
-                <li>{user.contactInfo}</li>
-              </ul>
+                <h2 className="underline text-lg font-semibold mb-2">Contact Us!</h2>
+                <ul className="list-disc ml-6">
+                   {user.contactInfo.map((info, index) => (
+                    <li key={index}>{info}</li> // Use `info` directly
+                    ))}
+                </ul>
             </div>
           </div>
         </div>
