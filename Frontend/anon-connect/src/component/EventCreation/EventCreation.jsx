@@ -7,10 +7,33 @@ function EventCreation({ openCreation, closeCreation }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log(e);
+    const eventName = e.target.eventName.value;
+    const eventLocation = e.target.eventLocation.value;
+    const eventDate = e.target.eventDate.value;
+    const eventDuration = e.target.eventDuration.value;
+    const eventDescription = e.target.eventDescription.value;
+    const eventSpeakers = e.target.eventSpeakers.value;
+    const eventTags = e.target.eventTags.value;
+
+    // Create eventInfo object
+    const eventInfo = {
+      name: eventName,
+      location: eventLocation,
+      startDate: eventDate,
+      duration: eventDuration,
+      description: eventDescription,
+      speakers: eventSpeakers,
+      tags: eventTags,
+      attendees: 0,
+      
+    };
+
     setIsFormSubmitted(true); // Form is submitted
-      setIsFormSubmitted(false); // Reset form submission after a short time
-      closeCreation(false); // Close the modal
-    }; // Delay to show the modal closing
+      setIsFormSubmitted(false); 
+      closeCreation(false);
+    }; 
 
   return (
     <div>
