@@ -5,9 +5,10 @@ import EventCreation from '../EventCreation/EventCreation.jsx';
 import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
 import EventItem from "../EventDisplay/EventItem/EventItem.jsx";
 import StarRating from './StarRating.jsx'; 
+import Home from '../Home/Home.jsx';
 
 function Profile() {
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, authService } = useContext(UserContext);
   const [openEventsCreation, setOpenEventsCreation] = useState(false); 
   const [actionClicked, setActionClicked] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
@@ -35,7 +36,10 @@ function Profile() {
   const handleItemClick = (eventThread) => {
     setCurrentItem(eventThread);
   };
-
+  const logoutUser = () => {
+    authService.logoutUser();
+    return <Home />
+  }
   if (currentItem) {
     return <EventItem event={currentItem} />;
   }
@@ -49,7 +53,7 @@ function Profile() {
         {/* Banner */}
         <div className="banner bg-teal-600 text-white p-6 mb-6 rounded-lg text-center relative">
           {isLoggedIn && (
-            <button className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-110">
+            <button onClick={() => logoutUser()} className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-110">
               Sign Out
             </button>
           )}

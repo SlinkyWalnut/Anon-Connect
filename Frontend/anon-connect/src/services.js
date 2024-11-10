@@ -68,6 +68,15 @@ export class AuthService extends User{
             
         }
     }
+    findUserByName = async (username) => {
+        try {
+            const response = await axios.get(`${LOCAL_URL_USERS}/findUsername/${username}`);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
     loginUser = async(username, password) => {
         await this.getAccounts().then((res) => {
             const {data} = res.data;
@@ -86,6 +95,7 @@ export class AuthService extends User{
             })
         })
        }
+       
        addUser = async (userDetails) => {
            const {name, organization, description, website, contact, rating} = userDetails;
            const user = {
@@ -113,7 +123,7 @@ export class AuthService extends User{
                throw error;
            }
        }
-    
+
 }
 
 

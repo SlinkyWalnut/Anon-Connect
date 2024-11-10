@@ -1,25 +1,66 @@
 import React, {useState, useContext} from 'react'
 import Modal from '../../Modal/Modal';
 import { UserContext } from '../../../App';
+import Profile from '../../Profile/Profile';
 
-
+function getRandomInteger() {
+  const min = 3;
+  const max = 5;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 function Registration({openRegister, closeRegister, setLogin}) {
-  const {setUser, isLoggedIn, setIsLoggedIn} = useContext(UserContext)
+  const {setUser, isLoggedIn, setIsLoggedIn, authService} = useContext(UserContext)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [organization, setOrganization] = useState('');
   const [website, setWebsite] = useState('');
   const [description, setDescription] = useState('');
+  const INIT_ERROR = {
+    "name": '',
+    "password": '',
+ }
 
+ const [errorText, setErrorText] = useState(INIT_ERROR);
+ const newInfo = {
+  "name": username,
+  "password": password
+ }
+ const userInfo = {
+  name: username,
+  organization,
+  description,
+  website,
+  contact: [],
+  rating: getRandomInteger()
+ }
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(username && password){
+    if(username.length && password.length){
       setUser({
         username,
         password,
         organization,
         website,
         description
+      })
+      authService.findUserByName(username).then(() => {
+        setErrorText({...errorText, name: 'This username has been taken.'})
+      }).catch((err) => {
+        setErrorText({...errorText, name: ''})
+        authService.createAccount(newInfo).then(() => {
+          authService.addUser(userInfo).then(() => {
+            authService.loginUser(username, password).then(() => {
+              return <Profile />
+              setErrorText(INIT_ERROR);
+            }).catch((err) => {
+              console.error('error in logging in user', err);
+            })
+          }).catch((err) => {
+            console.error("error in adding user", err);
+          })
+        }).catch((err) => {
+          console.error("error in registering account", err);
+        })
       })
       setUsername("");
       setPassword("");

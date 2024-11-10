@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import Registration from "../Registration/Registration";
 import Profile from '../../Profile/Profile';
 import { UserContext } from '../../../App';
+import Home from '../../Home/Home';
 
 function LoginForm() {
-  const { user, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  const { user, authService, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [openRegister, setOpenRegister] = useState(false);
@@ -19,7 +20,6 @@ function LoginForm() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log('Username:', username);
     console.log('Password:', password);
     if(username && password){

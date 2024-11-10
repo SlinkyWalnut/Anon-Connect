@@ -1,8 +1,11 @@
 import './App.css';
 import Home from './component/Home/Home.jsx';
 import { useState, createContext } from 'react';
+import { AuthService } from './services.js';
 
 export const UserContext = createContext(); 
+
+const authService = new AuthService();
 
 function UserProvider({children}) {
   const [userContext, setUserContext] = useState({
@@ -36,6 +39,7 @@ function UserProvider({children}) {
     isLoggedIn: false
   });
   const context = {
+    authService,
     user: userContext.user,
     isLoggedIn: userContext.isLoggedIn,
     setUser: (targetUser) => {
