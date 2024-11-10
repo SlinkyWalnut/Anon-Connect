@@ -93,7 +93,11 @@ function Profile() {
             {/* Contact Us */}
             <div className="p-4 bg-gray-100 rounded-lg w-full">
               <h2 className="underline text-lg font-semibold mb-2">Contact Us!</h2>
-                <p>{user.contactInfo}</p>
+              <ul className="list-disc ml-6">
+                {user.contactInfo.map((info,index) => (
+                  <li key={index}>{info}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

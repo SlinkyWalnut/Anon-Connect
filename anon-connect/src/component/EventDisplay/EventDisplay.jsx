@@ -1,42 +1,45 @@
 import React, { useState } from 'react';
 import EventThread from './EventThread/EventThread';
 import EventItem from './EventItem/EventItem';
+import EventMap from './EventMap.jsx';
 import "./EventDisplay.css"
 
 function EventDisplay() {
-    const [currentItem, setCurrentItem] = useState(null);
-    
-    const eventsList = [
-        {
-            description: "Event for druggies to become clean.",
-            location: "12345 street ave",
-            name: "Cold turkey",
-            attendees: 0
-        },
-        {
-            description: "Event for alcoholics to become clean.",
-            location: "67890 ave",
-            name: "More drugs",
-            attendees: 0
-        }
-    ];
+  const [currentItem, setCurrentItem] = useState(null); // State for the current selected event
 
-    const handleItemClick = (event_thread) => {
-        setCurrentItem(event_thread); 
-    };
+  // Sample events data
+  const eventsList = [
+    {
+      description: "Event for druggies to become clean.",
+      location: "12345 street ave",
+      name: "Cold turkey",
+      attendees: 0,
+      coordinates: { lat: 40.7128, lng: -74.0060 },
+    },
+    {
+      description: "Event for alcoholics to become clean.",
+      location: "67890 ave",
+      name: "More drugs",
+      attendees: 0,
+      coordinates: { lat: 34.0522, lng: -118.2437 },
+    },
+  ];
 
+  // Handle item click to show event details
+  const handleItemClick = (eventThread) => {
+    setCurrentItem(eventThread);
+  };
+
+  // Show event details if currentItem is selected
+  if (currentItem) {
     return (
         currentItem ? (
-            <EventItem
-                description={currentItem.description}
-                location={currentItem.location}
-                name={currentItem.name}
-            />
+            <EventItem event={currentItem} />
         ) : (
             <div>
                 <h3 className='text-5xl my-8'>Events</h3>
                 <div className='flex justify-center my-8'>
-                    <div className='event-container'>
+                    <div className='p-2 mx-6 border border-black rounded-md'>
                         {eventsList.map(event_thread => (
                             <div 
                                 key={event_thread.name}
@@ -60,4 +63,3 @@ function EventDisplay() {
 }
 
 export default EventDisplay;
-
