@@ -7,16 +7,36 @@ import EventItem from "../EventDisplay/EventItem/EventItem.jsx";
 import StarRating from './StarRating.jsx'; 
 import Home from '../Home/Home.jsx';
 
-function Profile() {
-  const { isLoggedIn, authService } = useContext(UserContext);
+function Profile({hostId}) {
+  const { isLoggedIn, eventService, authService } = useContext(UserContext);
   const [openEventsCreation, setOpenEventsCreation] = useState(false); 
   const [logoutClicked, setLogoutClicked] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
+  const [hostInfo, setHostInfo] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [pastEvents, setPastEvents] = useState([]);
+  
+  
+  useEffect(() => {
+    eventService.getAllEvents().then((response) => {
+      console.log(response);
+    }).then(() => {
+      authService.findUser(hostId).then((response) => {
+        setHostInfo(response.data.user);
+        console.log(hostInfo);
+        
+        // setHostInfo(response.data.user);
+      })
 
+    })
+    setLoading(true)
+    
+    // event
+  }, [hostId]);  
   const handleEventsClicked = () => {
     setOpenEventsCreation(!openEventsCreation); 
   };
-
+  
   const user = {
     organization: "Alcoholics Anonymous", 
     description: "We host continuous meetings for recovering alcoholics!", 
@@ -30,9 +50,8 @@ function Profile() {
     ], 
     contactInfo: ["123-456-7890", 'WeHelpDruggies@AcolAnon.org'],
   };
-
-  useEffect(() => {}, []);  // No changes here for now
-
+  
+  
   const handleItemClick = (eventThread) => {
     setCurrentItem(eventThread);
   };
@@ -41,15 +60,16 @@ function Profile() {
     setLogoutClicked(true);
   }
   if (currentItem) {
+    console.log(currentItem);
     return <EventItem event={currentItem} />;
   }
   if(logoutClicked){
     return <Home />
   }
-
+  
   const completedEvents = user.events.filter(event => event.completed);
   const currentEvents = user.events.filter(event => !event.completed);
-
+  
   return (
     <div className="profileContainer bg-gray-800 min-h-screen py-6">
       <div className="max-w-7xl mx-auto px-4">
@@ -60,8 +80,8 @@ function Profile() {
               Sign Out
             </button>
           )}
-          <h1 className="text-4xl font-bold">{user.organization}</h1>
-          <p className="mt-2">{user.description}</p>
+          <h1 className="text-4xl font-bold">{hostInfo.organization}</h1>
+          <p className="mt-2">{hostInfo.description}</p>
         </div>
 
         <div className="events flex gap-8">
@@ -74,7 +94,7 @@ function Profile() {
                   onClick={() => handleItemClick(event)}  
                   key={index} 
                   className="cursor-pointer bg-blue-500 text-gray-200 p-4 rounded-lg transition-all hover:bg-blue-200 hover:text-white hover:scale-105">
-                  <EventThread name={event.name} description={event.description} location={event.location} />
+                  <EventThread name={hostInfo.name} description={hostInfo.description} location={event.location} />
                 </li>
               ))}
             </ul>
@@ -86,7 +106,7 @@ function Profile() {
                   onClick={() => handleItemClick(event)} 
                   key={index} 
                   className="cursor-pointer bg-gray-300 text-white p-4 rounded-lg transition-all hover:bg-gray-100 hover:text-white hover:scale-105">
-                  <EventThread name={event.name} description={event.description} location={event.location} />
+                  <EventThread name={hostInfo.name} description={hostInfo.description} location={event.location} />
                 </li>
               ))}
             </ul>
@@ -106,7 +126,7 @@ function Profile() {
             <div className="p-4 bg-gray-600 rounded-lg w-full mb-5">
               <h2 className="text-lg font-semibold mb-2 text-gray-300">Rating</h2>
               <div className="flex items-center justify-center mb-2">
-                <StarRating rating={user.rating} />
+                {/* {loading ? <StarRating rating={hostInfo.rating} /> : <div>Loading..</div> } */}
               </div>
               <div className="flex items-center justify-center">
                 <p>{user.rating} / 5</p>

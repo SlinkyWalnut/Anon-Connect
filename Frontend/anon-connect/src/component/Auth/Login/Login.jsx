@@ -45,7 +45,7 @@ function LoginForm() {
   };
 
   if (showProfile) {
-    return <Profile />;
+    return <Profile hostId={authService.accountId}/>;
   }
 
   return (

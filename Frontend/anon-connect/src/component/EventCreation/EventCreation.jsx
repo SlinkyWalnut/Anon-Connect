@@ -3,7 +3,9 @@ import './EventCreation.css';
 import { UserContext } from '../../App.js'; 
 
 import Modal from '../Modal/Modal';
-
+function getRandomValue() {
+  return Math.random() < 0.5 ? 0 : 1;
+}
 function EventCreation({ openCreation, closeCreation }) {
   const { authService, eventService } = useContext(UserContext);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -30,7 +32,7 @@ function EventCreation({ openCreation, closeCreation }) {
       reviews: [],
       attendees: 0,
       coordinates: '',
-      completed: false
+      completed: getRandomValue()
     };
 
     eventService.postEvent(eventInfo);

@@ -50,7 +50,7 @@ function Registration({openRegister, closeRegister, setLogin}) {
         authService.createAccount(newInfo).then(() => {
           authService.addUser(userInfo).then(() => {
             authService.loginUser(username, password).then(() => {
-              return <Profile />
+              return <Profile hostId={authService.id}/>
               setErrorText(INIT_ERROR);
             }).catch((err) => {
               console.error('error in logging in user', err);

@@ -9,37 +9,37 @@ import "./EventDisplay.css";
 function EventDisplay() {
   const [currentItem, setCurrentItem] = useState(null); // State for the current selected event
   const { authService, eventService } = useContext(UserContext);
-  const [events, setEvents] = useState([]);
+  const [eventsList, setEventsList] = useState([]);
 
   useEffect(() => {
     eventService.getAllEvents().then((response) => {
-      console.log(response);
+      setEventsList(response.data.data);
     })
   }, [eventService]);
   // Sample events data
-  const eventsList = [
-    {
-      description: "Event for druggies to become clean.",
-      location: "12345 street ave",
-      name: "Cold turkey",
-      attendees: 0,
-      coordinates: { lat: 40.7306, lng: -73.9352 },
-    },
-    {
-      description: "Event for alcoholics to become clean.",
-      location: "67890 ave",
-      name: "More drugs",
-      attendees: 0,
-      coordinates: { lat: 40.7580, lng: -73.9855 },
-    },
-    {
-      description: "Therapy Consultation for Psychiatric Patients",
-      location: "56th street",
-      name: "GetHelp",
-      attendees: 0,
-      coordinates: { lat: 40.6915, lng: -73.9875 },
-      },
-  ];
+  // const eventsList = [
+  //   {
+  //     description: "Event for druggies to become clean.",
+  //     location: "12345 street ave",
+  //     name: "Cold turkey",
+  //     attendees: 0,
+  //     coordinates: { lat: 40.7306, lng: -73.9352 },
+  //   },
+  //   {
+  //     description: "Event for alcoholics to become clean.",
+  //     location: "67890 ave",
+  //     name: "More drugs",
+  //     attendees: 0,
+  //     coordinates: { lat: 40.7580, lng: -73.9855 },
+  //   },
+  //   {
+  //     description: "Therapy Consultation for Psychiatric Patients",
+  //     location: "56th street",
+  //     name: "GetHelp",
+  //     attendees: 0,
+  //     coordinates: { lat: 40.6915, lng: -73.9875 },
+  //     },
+  // ];
 
   // Handle item click to show event details
   const handleItemClick = (eventThread) => {
@@ -65,6 +65,7 @@ function EventDisplay() {
               className={`cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl p-4 mb-4 rounded-md ${index % 2 === 0 ? "bg-green-100 hover:bg-green-200" : "bg-orange-100 hover:bg-orange-200"}`}
             >
               <EventThread
+                key={eventThread._id}
                 description={eventThread.description}
                 location={eventThread.location}
                 name={eventThread.name}

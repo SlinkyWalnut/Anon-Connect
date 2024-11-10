@@ -4,20 +4,21 @@ import Profile from '../../Profile/Profile';
 import EventMap from '../EventMap.jsx';
 
 
-function EventItem({ event = {} }) {
+function EventItem({ event }) {
   const {
-    name = "Event Name Placeholder",
-    description = "Event description not available.",
-    attendees = [],
-    location = "Location not available",
-    coordinates = { lat: 0, lng: 0 },
-    completed = false
+    name,
+    description,
+    attendees,
+    location,
+    coordinates,
+    completed,
+    userId
   } = event;
 
 
   const { isLoggedIn } = useContext(UserContext);
   const [actionClicked, setActionClicked] = useState(null);
-  const [rsvpCount, setRsvpCount] = useState(attendees.length);
+  const [rsvpCount, setRsvpCount] = useState(attendees);
   const [rsvpClicked, setRsvpClicked] = useState(false);
 
 
@@ -30,7 +31,7 @@ function EventItem({ event = {} }) {
 
 
   if (actionClicked === 'Profile') {
-    return <Profile />;
+    return <Profile hostId={userId}/>;
   }
 
 

@@ -123,6 +123,15 @@ export class AuthService extends User{
                throw error;
            }
        }
+       findUser = async (userId) => {
+           try {
+               const response = await axios.get(`${LOCAL_URL_USERS}/${userId}`);
+               return response;
+           } catch (error) {
+                console.error(error);
+               throw error;
+           }
+       }
 
 }
 
