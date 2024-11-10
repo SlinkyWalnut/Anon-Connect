@@ -50,7 +50,7 @@ const EventMap = ({ eventsList }) => {
   }, [eventsList]); // Rerun when eventsList changes
 
   return (
-    <div className="map-container" style={{ height: '400px', width: '100%' }}>
+    <div className="map-container" style={{ height: '450px', width: '100%' }}>
       <div id="map" style={{ height: '100%', width: '100%' }} />
     </div>
   );

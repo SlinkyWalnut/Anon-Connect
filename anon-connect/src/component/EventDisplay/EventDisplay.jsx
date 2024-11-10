@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import EventItem from './EventItem/EventItem'; // Import EventItem
 import EventThread from './EventThread/EventThread'; // Import EventThread
 import EventMap from './EventMap.jsx';
+import "./EventDisplay.css";
 
 function EventDisplay() {
   const [currentItem, setCurrentItem] = useState(null); // State for the current selected event
@@ -22,6 +23,13 @@ function EventDisplay() {
       attendees: 0,
       coordinates: { lat: 34.0522, lng: -118.2437 },
     },
+    {
+      description: "Therapy Consultation for Psychiatric Patients",
+      location: "56th street",
+      name: "GetHelp",
+      attendees: 0,
+      coordinates: { lat: 46.0522, lng: -112.2437 },
+      },
   ];
 
   // Handle item click to show event details
@@ -40,12 +48,12 @@ function EventDisplay() {
 
       <div className="flex flex-col lg:flex-row justify-center gap-8">
         {/* Events List Section */}
-        <div className="flex-1 p-4 bg-white shadow-lg rounded-lg">
-          {eventsList.map((eventThread) => (
+        <div className="event-container flex-1 p-4 bg-white shadow-lg rounded-lg">
+          {eventsList.map((eventThread, index) => (
             <div
               key={eventThread.name}
               onClick={() => handleItemClick(eventThread)}
-              className="cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl p-4 mb-4 rounded-md bg-gray-50 hover:bg-gray-100"
+              className={`cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl p-4 mb-4 rounded-md ${index % 2 === 0 ? "bg-green-100 hover:bg-green-200" : "bg-orange-100 hover:bg-orange-200"}`}
             >
               <EventThread
                 description={eventThread.description}
