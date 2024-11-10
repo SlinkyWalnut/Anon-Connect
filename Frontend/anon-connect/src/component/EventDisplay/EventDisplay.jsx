@@ -10,14 +10,14 @@ function EventDisplay() {
   // Sample events data
   const eventsList = [
     {
-      description: "Event for druggies to become clean.",
+      description: "Event for people suffering from narcotics addiction.",
       location: "12345 street ave",
       name: "Cold turkey",
       attendees: 0,
       coordinates: { lat: 40.7306, lng: -73.9352 },
     },
     {
-      description: "Event for alcoholics to become clean.",
+      description: "Event for people suffering from alcohol addiction.",
       location: "67890 ave",
       name: "More drugs",
       attendees: 0,
