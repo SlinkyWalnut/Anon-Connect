@@ -21,7 +21,7 @@ function EventDisplay() {
     {
       description: "These sessions teach individuals strategies to recognize triggers, manage cravings, and prevent relapse.",
       location: "12345 street ave",
-      name: "Relaps Prevention Workshop",
+      name: "Relapse Prevention Workshop",
       attendees: 0,
       coordinates: { lat: 40.7306, lng: -73.9352 },
     },
