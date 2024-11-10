@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react'
 import Modal from '../../Modal/Modal';
 import { UserContext } from '../../../App';
 
+
 function Registration({openRegister, closeRegister, setLogin}) {
   const {setUser, isLoggedIn, setIsLoggedIn} = useContext(UserContext)
   const [username, setUsername] = useState('');
