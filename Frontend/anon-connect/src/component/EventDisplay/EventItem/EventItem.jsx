@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { UserContext } from '../../../App.js';
+import { useState, useContext } from 'react';
 import Profile from '../../Profile/Profile';
 import EventMap from '../EventMap.jsx';
+
 
 function EventItem({ event = {} }) {
   const {
@@ -12,9 +14,12 @@ function EventItem({ event = {} }) {
     completed = false
   } = event;
 
+
+  const { isLoggedIn } = useContext(UserContext);
   const [actionClicked, setActionClicked] = useState(null);
   const [rsvpCount, setRsvpCount] = useState(attendees.length);
   const [rsvpClicked, setRsvpClicked] = useState(false);
+
 
   const handleRsvpClick = () => {
     if (!rsvpClicked) {
@@ -23,51 +28,57 @@ function EventItem({ event = {} }) {
     }
   };
 
+
   if (actionClicked === 'Profile') {
     return <Profile />;
   }
+
 
   return (
     <div>
       <div className="p-6 bg-gradient-to-b from-primary to-secondary min-h-screen flex justify-center items-center">
         <div className="flex flex-col lg:flex-row bg-white shadow-xl rounded-lg w-full max-w-6xl gap-8 p-4">
           {/* Left Side Content */}
-          <div className="flex-1 p-6 space-y-4 bg-gray-50 shadow-lg rounded-lg">
+          <div className="flex-1 p-6 space-y-4 bg-orange-200 shadow-lg rounded-lg">
             {/* Event Details */}
             <div>
               <h2 className="font-bold text-3xl mb-2 text-gray-800">{name}</h2>
               <p className="text-gray-600 mb-4">{description}</p>
             </div>
 
+
             {/* Location */}
             <div className="text-gray-500 text-sm mt-4">
               <p>{location}</p>
             </div>
 
+
             {/* RSVP Section */}
             <div className="mt-4 flex flex-col items-center w-full">
               {completed ? (
-                <h1 className="text-xs text-gray-600 mt-1">Event has completed</h1>
+                <h1 className="text-xs text-gray-600 mt-1">Event Has Passed</h1>
               ) : (
                 <>
                   <button
                     onClick={handleRsvpClick}
-                    className={`w-full py-2 rounded-lg border border-red-500 transition-colors ${rsvpClicked ? 'bg-gray-700' : 'bg-blue-500 hover:bg-blue-600'} text-white`}
+                    className={`w-full py-2 rounded-lg border border-green-500 transition-colors ${rsvpClicked ? 'bg-green-700' : 'bg-green-500 hover:bg-green-600'} text-white`}
                   >
-                    RSVP!
+                    {!isLoggedIn ? ( !rsvpClicked ? (<p>RSVP!</p>) : (<p>We'll see you there!</p>)) : (<p>Attendees: {rsvpCount}</p>)}
                   </button>
-                  <p className="text-xs text-gray-600 mt-1">Attendees: {rsvpCount}</p>
+                  {/* {isLoggedIn && <p className="text-xs text-gray-600 mt-1">Attendees: {rsvpCount}</p>} */}
                 </>
               )}
             </div>
 
+
             {/* About Host */}
             <div
               onClick={() => setActionClicked('Profile')}
-              className="cursor-pointer bg-indigo-100 text-indigo-700 font-semibold p-4 rounded-lg mb-4 hover:bg-indigo-200 transition"
+              className="cursor-pointer bg-orange-500 text-white font-semibold p-4 rounded-lg mb-4 hover:bg-orange-400 transition"
             >
               About Host
             </div>
+
 
             {/* Host Reviews */}
             <div className="border-t pt-4 space-y-2">
@@ -78,6 +89,7 @@ function EventItem({ event = {} }) {
               </div>
             </div>
           </div>
+
 
           {/* Right Side Content */}
           <div className="w-full lg:w-1/3 p-6 space-y-4 flex flex-col items-center">
@@ -92,5 +104,7 @@ function EventItem({ event = {} }) {
   );
 }
 
+
 export default EventItem;
+
 
