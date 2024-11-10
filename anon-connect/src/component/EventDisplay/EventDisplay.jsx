@@ -60,6 +60,7 @@ function EventDisplay() {
             </div>
         )
     );
-}
+    }  
+};
 
 export default EventDisplay;
