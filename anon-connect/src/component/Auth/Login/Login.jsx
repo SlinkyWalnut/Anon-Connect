@@ -15,7 +15,7 @@ function LoginForm() {
     if(isLoggedIn) {
       setShowProfile(true);
     }
-  }, isLoggedIn);
+  }, [isLoggedIn]);
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,62 +29,70 @@ function LoginForm() {
     }
   };
   const registerClicked = () => {
-    setOpenRegister(!openRegister)
-  }
-  const handleRegistrationComplete =() => {
+    setOpenRegister(!openRegister);
+  };
+  const handleRegistrationComplete = () => {
     setIsLoggedIn(true);
     setShowProfile(true);
-  }
-  if(showProfile){
-    return <Profile />;
   };
 
+  if (showProfile) {
+    return <Profile />;
+  }
+
   return (
-    <div>
-      <div className="flex justify-center items-center h-screen">
-        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <h2 className="text-2xl mb-4">Log in</h2>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-              Username
-            </label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter your username"
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              placeholder="Enter your password"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              type="button"
-              onClick={() => setClickedAction("hasLoggedIn")}
-              className="bg-blue-500 mx-auto hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Log in
-            </button>
-          </div>
-          <div>
-            <span>Don't have an account?</span> <span onClick={registerClicked} className='text-blue-700 hover:underline cursor-pointer'>Sign up</span>
-          </div>
-        </form>
-      </div>
-      <Registration openRegister={openRegister} closeRegister={setOpenRegister} setLogin={handleRegistrationComplete}/>
+    <div className="flex justify-center items-center h-screen bg-light-blue">
+      <form onSubmit={handleSubmit} className=" bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 transition-transform transform hover:scale-105 hover:shadow-custom-dark duration-300 ease-in-out">
+        <h2 className=" text-bright-blue text-3xl mb-6 font-semibold">Log in</h2>
+        
+        <div className="mb-4">
+          <label className="block float-left text-dark text-md font-medium mb-2" htmlFor="username">
+            Username
+          </label>
+          <input
+            id="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="shadow border rounded w-full py-2 px-3 text-dark leading-tight focus:outline-none focus:ring-2 focus:ring-accent"
+            placeholder="Enter your username"
+          />
+        </div>
+        
+        <div className="mb-6">
+          <label className="block float-left text-dark text-md font-medium mb-2" htmlFor="password">
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="shadow border rounded w-full py-2 px-3 text-dark mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-accent"
+            placeholder="Enter your password"
+          />
+        </div>
+        
+        <div className="flex items-center justify-center mb-4">
+          <button
+            type="submit"
+            onClick={() => setClickedAction("hasLoggedIn")}
+            className="bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transform transition-transform hover:scale-105 duration-300 ease-in-out"
+          >
+            Log in
+          </button>
+        </div>
+        
+        <div className="text-center">
+          <span className="text-dark">Don't have an account? </span>
+          <span onClick={registerClicked} className="text-accent cursor-pointer hover:underline">
+            Sign up
+          </span>
+        </div>
+      </form>
+
+      {/* Registration modal */}
+      <Registration openRegister={openRegister} closeRegister={setOpenRegister} setLogin={handleRegistrationComplete} />
     </div>
   );
 }
