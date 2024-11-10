@@ -17,7 +17,6 @@ function EventDisplay() {
     })
   }, [eventService]);
   // Sample events data
-<<<<<<< HEAD
   // const eventsList = [
   //   {
   //     description: "Event for druggies to become clean.",
@@ -41,31 +40,6 @@ function EventDisplay() {
   //     coordinates: { lat: 40.6915, lng: -73.9875 },
   //     },
   // ];
-=======
-  const eventsList = [
-    {
-      description: "Event for people suffering from narcotics addiction.",
-      location: "12345 street ave",
-      name: "Cold turkey",
-      attendees: 0,
-      coordinates: { lat: 40.7306, lng: -73.9352 },
-    },
-    {
-      description: "Event for people suffering from alcohol addiction.",
-      location: "67890 ave",
-      name: "More drugs",
-      attendees: 0,
-      coordinates: { lat: 40.7580, lng: -73.9855 },
-    },
-    {
-      description: "Therapy Consultation for Psychiatric Patients",
-      location: "56th street",
-      name: "GetHelp",
-      attendees: 0,
-      coordinates: { lat: 40.6915, lng: -73.9875 },
-      },
-  ];
->>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
 
   // Handle item click to show event details
   const handleItemClick = (eventThread) => {
