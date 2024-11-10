@@ -5,12 +5,15 @@ import EventCreation from '../EventCreation/EventCreation.jsx';
 import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
 import EventItem from "../EventDisplay/EventItem/EventItem.jsx";
 import StarRating from './StarRating.jsx'; 
+import Home from '../Home/Home.jsx';
+import { EventService } from '../../services.js';
 
 function Profile() {
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, authService, eventService } = useContext(UserContext);
   const [openEventsCreation, setOpenEventsCreation] = useState(false); 
   const [actionClicked, setActionClicked] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
+  const [events, setEvents] = useState([]); 
 
   const handleEventsClicked = () => {
     setOpenEventsCreation(!openEventsCreation); 
@@ -22,15 +25,32 @@ function Profile() {
     location: "4531 Druggie Ave", 
     rating: 3.5, 
     events: [
-      { name: "Consultation", completed: true, location: "4531 Druggie Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
-      { name: "Group Therapy", completed: true, location: "4531 Druggie Ave", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
-      { name: "Movie Night", completed: false, location: "4531 Druggie Ave", description: "We're watching Coraline!!" }, 
-      { name: "Pizza and Chat", completed: false, location: "4531 Druggie Ave", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
+      { name: "Consultation", completed: true, location: "1234 Bensonhurst Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
+      { name: "Group Therapy", completed: true, location: "44 West 4th St, New York, NY 10012", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
+      { name: "Movie Night", completed: false, location: "234 W 42nd St, New York, NY 10036", description: "We're watching Coraline!!" }, 
+      { name: "Pizza and Chat", completed: false, location: "7 Carmine St, New York, NY 10014", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
     ], 
     contactInfo: ["123-456-7890", 'WeHelpDruggies@AcolAnon.org'],
   };
 
-  useEffect(() => {}, []);  // No changes here for now
+  const USER = {
+    "id": authService.id,
+    "organization": authService.organization,
+    "description": authService.description,
+    "website": authService.website,
+    "contact": authService.contact, 
+    "rating": authService.rating
+  };
+
+
+  useEffect(() => {
+    eventService.getAllEvents().then((data) => {
+      if (Array.isArray(data)) { 
+        const userHostings = data.filter(hosting => hosting.user_id === USER.id)
+        setEvents(events); 
+      }
+  }) 
+  }, [events]);  
 
   const handleItemClick = (eventThread) => {
     setCurrentItem(eventThread);
@@ -40,8 +60,8 @@ function Profile() {
     return <EventItem event={currentItem} />;
   }
 
-  const completedEvents = user.events.filter(event => event.completed);
-  const currentEvents = user.events.filter(event => !event.completed);
+  const completedEvents = events.filter(event => event.completed);
+  const currentEvents = events.filter(event => !event.completed);
 
   return (
     <div className="profileContainer bg-gray-800 min-h-screen py-6">
@@ -53,8 +73,8 @@ function Profile() {
               Sign Out
             </button>
           )}
-          <h1 className="text-4xl font-bold">{user.organization}</h1>
-          <p className="mt-2">{user.description}</p>
+          <h1 className="text-4xl font-bold">{USER.organization}</h1>
+          <p className="mt-2">{USER.description}</p>
         </div>
 
         <div className="events flex gap-8">
@@ -99,10 +119,10 @@ function Profile() {
             <div className="p-4 bg-gray-600 rounded-lg w-full mb-5">
               <h2 className="text-lg font-semibold mb-2 text-gray-300">Rating</h2>
               <div className="flex items-center justify-center mb-2">
-                <StarRating rating={user.rating} />
+                <StarRating rating={USER.rating} />
               </div>
               <div className="flex items-center justify-center">
-                <p>{user.rating} / 5</p>
+                <p>{USER.rating} / 5</p>
               </div>
             </div>
 

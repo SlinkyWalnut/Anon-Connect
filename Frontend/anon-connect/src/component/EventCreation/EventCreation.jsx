@@ -17,6 +17,19 @@ function EventCreation({ openCreation, closeCreation }) {
     const eventDescription = e.target.eventDescription.value;
     const eventSpeakers = e.target.eventSpeakers.value;
     const eventTags = e.target.eventTags.value;
+    const randomNum = Math.floor(Math.random() * (10)); 
+    const latLongPairs = [
+      { "latitude": 40.725318206725415, "longitude": -73.97687786569772 },
+      { "latitude": 40.86687739258211, "longitude": -73.79682524851063 },
+      { "latitude": 40.72760157699452, "longitude": -74.0024565733655 },
+      { "latitude": 40.506187281852836, "longitude": -73.78322868445643 },
+      { "latitude": 40.764956159745, "longitude": -74.14548208089526 },
+      { "latitude": 40.59911477428061, "longitude": -73.88447658135372 },
+      { "latitude": 40.69822105844685, "longitude": -73.92897314407416 },
+      { "latitude": 40.65358133449056, "longitude": -73.90460307437931 },
+      { "latitude": 40.765199198887105, "longitude": -74.15725082867427 },
+      { "latitude": 40.830888535533665, "longitude": -73.91987610712516 }
+    ];
 
     const eventInfo = {
       name: eventName,
@@ -29,7 +42,7 @@ function EventCreation({ openCreation, closeCreation }) {
       tags: eventTags,
       reviews: [],
       attendees: 0,
-      coordinates: '',
+      coordinates: latLongPairs[randomNum],
       completed: false
     };
 
