@@ -9,37 +9,37 @@ import "./EventDisplay.css";
 function EventDisplay() {
   const [currentItem, setCurrentItem] = useState(null); // State for the current selected event
   const { authService, eventService } = useContext(UserContext);
-  const [eventsList, setEventsList] = useState([]);
+  // const [eventsList, setEventsList] = useState([]);
 
-  useEffect(() => {
-    eventService.getAllEvents().then((response) => {
-      setEventsList(response.data.data);
-    })
-  }, [eventService]);
+  // useEffect(() => {
+  //   eventService.getAllEvents().then((response) => {
+  //     setEventsList(response.data.data);
+  //   })
+  // }, [eventService]);
   // Sample events data
-  // const eventsList = [
-  //   {
-  //     description: "Event for druggies to become clean.",
-  //     location: "12345 street ave",
-  //     name: "Cold turkey",
-  //     attendees: 0,
-  //     coordinates: { lat: 40.7306, lng: -73.9352 },
-  //   },
-  //   {
-  //     description: "Event for alcoholics to become clean.",
-  //     location: "67890 ave",
-  //     name: "More drugs",
-  //     attendees: 0,
-  //     coordinates: { lat: 40.7580, lng: -73.9855 },
-  //   },
-  //   {
-  //     description: "Therapy Consultation for Psychiatric Patients",
-  //     location: "56th street",
-  //     name: "GetHelp",
-  //     attendees: 0,
-  //     coordinates: { lat: 40.6915, lng: -73.9875 },
-  //     },
-  // ];
+  const eventsList = [
+    {
+      description: "These sessions teach individuals strategies to recognize triggers, manage cravings, and prevent relapse.",
+      location: "12345 street ave",
+      name: "Relaps Prevention Workshop",
+      attendees: 0,
+      coordinates: { lat: 40.7306, lng: -73.9352 },
+    },
+    {
+      description: "These regular meetings offer support, accountability, and a safe space to share experiences and challenges.",
+      location: "67890 ave",
+      name: "Peer-Led Support Group",
+      attendees: 0,
+      coordinates: { lat: 40.7580, lng: -73.9855 },
+    },
+    {
+      description: "Inspirational talks by individuals in recovery, addiction counselors, and others who have insights to share can be motivating for participants.",
+      location: "56th street",
+      name: "Guest Speaker Series",
+      attendees: 0,
+      coordinates: { lat: 40.6915, lng: -73.9875 },
+      },
+  ];
 
   // Handle item click to show event details
   const handleItemClick = (eventThread) => {

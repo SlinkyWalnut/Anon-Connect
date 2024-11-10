@@ -17,23 +17,23 @@ function Profile() {
   const [pastEvents, setPastEvents] = useState([]);
   
   
-  useEffect(() => {
-    eventService.getAllEvents().then((response) => {
-      console.log(response);
+//   useEffect(() => {
+//     eventService.getAllEvents().then((response) => {
+//       console.log(response);
 
-    }).then(() => {
-      authService.findUser(hostId).then((response) => {
-        setHostInfo(response.data.user);
-        console.log(hostInfo);
+//     }).then(() => {
+//       authService.findUser(hostId).then((response) => {
+//         setHostInfo(response.data.user);
+//         console.log(hostInfo);
         
-        // setHostInfo(response.data.user);
-      })
+//         // setHostInfo(response.data.user);
+//       })
 
-    })
-    setLoading(true)
+//     })
+//     setLoading(true)
     
     // event
-  }, [hostId]);  
+ // });  
   const handleEventsClicked = () => {
     setOpenEventsCreation(!openEventsCreation); 
   };
