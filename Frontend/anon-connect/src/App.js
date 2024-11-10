@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './component/Home/Home.jsx';
 import { useState, createContext } from 'react';
-import { AuthService } from './services.js';
+import { AuthService, EventService } from './services.js';
 
 export const UserContext = createContext(); 
 

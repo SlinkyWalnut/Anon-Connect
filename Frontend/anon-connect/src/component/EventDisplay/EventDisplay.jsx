@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import EventItem from './EventItem/EventItem'; // Import EventItem
 import EventThread from './EventThread/EventThread'; // Import EventThread
 import EventMap from './EventMap.jsx';
+import { UserContext } from '../../App.js'; 
+
 import "./EventDisplay.css";
 
 function EventDisplay() {
   const [currentItem, setCurrentItem] = useState(null); // State for the current selected event
+  const { authService, eventService } = useContext(UserContext);
+  const [events, setEvents] = useState([]);
 
+  useEffect(() => {
+    eventService.getAllEvents().then((response) => {
+      console.log(response);
+    })
+  }, [eventService]);
   // Sample events data
   const eventsList = [
     {
