@@ -6,12 +6,19 @@ import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
 import EventItem from "../EventDisplay/EventItem/EventItem.jsx";
 import StarRating from './StarRating.jsx'; 
 import Home from '../Home/Home.jsx';
+import { EventService } from '../../services.js';
 
+<<<<<<< HEAD
 function Profile({hostId}) {
   const { isLoggedIn, eventService, authService } = useContext(UserContext);
+=======
+function Profile() {
+  const { isLoggedIn, authService, eventService } = useContext(UserContext);
+>>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
   const [openEventsCreation, setOpenEventsCreation] = useState(false); 
-  const [logoutClicked, setLogoutClicked] = useState(false);
+  const [actionClicked, setActionClicked] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
+<<<<<<< HEAD
   const [hostInfo, setHostInfo] = useState({});
   const [loading, setLoading] = useState(false);
   const [pastEvents, setPastEvents] = useState([]);
@@ -27,6 +34,9 @@ function Profile({hostId}) {
         
         // setHostInfo(response.data.user);
       })
+=======
+  const [events, setEvents] = useState([]); 
+>>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
 
     })
     setLoading(true)
@@ -43,26 +53,47 @@ function Profile({hostId}) {
     location: "4531 Druggie Ave", 
     rating: 3.5, 
     events: [
-      { name: "Consultation", completed: true, location: "4531 Druggie Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
-      { name: "Group Therapy", completed: true, location: "4531 Druggie Ave", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
-      { name: "Movie Night", completed: false, location: "4531 Druggie Ave", description: "We're watching Coraline!!" }, 
-      { name: "Pizza and Chat", completed: false, location: "4531 Druggie Ave", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
+      { name: "Consultation", completed: true, location: "1234 Bensonhurst Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
+      { name: "Group Therapy", completed: true, location: "44 West 4th St, New York, NY 10012", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
+      { name: "Movie Night", completed: false, location: "234 W 42nd St, New York, NY 10036", description: "We're watching Coraline!!" }, 
+      { name: "Pizza and Chat", completed: false, location: "7 Carmine St, New York, NY 10014", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
     ], 
     contactInfo: ["123-456-7890", 'WeHelpDruggies@AcolAnon.org'],
   };
+<<<<<<< HEAD
   
   
+=======
+
+  const USER = {
+    "id": authService.id,
+    "organization": authService.organization,
+    "description": authService.description,
+    "website": authService.website,
+    "contact": authService.contact, 
+    "rating": authService.rating
+  };
+
+
+  useEffect(() => {
+    eventService.getAllEvents().then((data) => {
+      if (Array.isArray(data)) { 
+        const userHostings = data.filter(hosting => hosting.user_id === USER.id)
+        setEvents(events); 
+      }
+  }) 
+  }, [events]);  
+
+>>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
   const handleItemClick = (eventThread) => {
     setCurrentItem(eventThread);
   };
-  const logoutUser = () => {
-    authService.logoutUser();
-    setLogoutClicked(true);
-  }
+
   if (currentItem) {
     console.log(currentItem);
     return <EventItem event={currentItem} />;
   }
+<<<<<<< HEAD
   if(logoutClicked){
     return <Home />
   }
@@ -70,18 +101,29 @@ function Profile({hostId}) {
   const completedEvents = user.events.filter(event => event.completed);
   const currentEvents = user.events.filter(event => !event.completed);
   
+=======
+
+  const completedEvents = events.filter(event => event.completed);
+  const currentEvents = events.filter(event => !event.completed);
+
+>>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
   return (
     <div className="profileContainer bg-gray-800 min-h-screen py-6">
       <div className="max-w-7xl mx-auto px-4">
         {/* Banner */}
         <div className="banner bg-teal-600 text-white p-6 mb-6 rounded-lg text-center relative">
-          {authService.isLoggedIn && (
-            <button onClick={() => logoutUser()} className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-110">
+          {isLoggedIn && (
+            <button className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-110">
               Sign Out
             </button>
           )}
+<<<<<<< HEAD
           <h1 className="text-4xl font-bold">{hostInfo.organization}</h1>
           <p className="mt-2">{hostInfo.description}</p>
+=======
+          <h1 className="text-4xl font-bold">{USER.organization}</h1>
+          <p className="mt-2">{USER.description}</p>
+>>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
         </div>
 
         <div className="events flex gap-8">
@@ -111,7 +153,7 @@ function Profile({hostId}) {
               ))}
             </ul>
 
-            {authService.isLoggedIn && (
+            {isLoggedIn && (
               <button 
                 onClick={handleEventsClicked} 
                 className="mt-6 rounded-lg bg-teal-500 text-white py-2 px-6 hover:opacity-80 transform transition-all hover:scale-110">
@@ -126,10 +168,14 @@ function Profile({hostId}) {
             <div className="p-4 bg-gray-600 rounded-lg w-full mb-5">
               <h2 className="text-lg font-semibold mb-2 text-gray-300">Rating</h2>
               <div className="flex items-center justify-center mb-2">
+<<<<<<< HEAD
                 {/* {loading ? <StarRating rating={hostInfo.rating} /> : <div>Loading..</div> } */}
+=======
+                <StarRating rating={USER.rating} />
+>>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
               </div>
               <div className="flex items-center justify-center">
-                <p>{user.rating} / 5</p>
+                <p>{USER.rating} / 5</p>
               </div>
             </div>
 

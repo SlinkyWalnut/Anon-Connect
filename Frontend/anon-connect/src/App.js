@@ -1,12 +1,12 @@
 import './App.css';
 import Home from './component/Home/Home.jsx';
-import { useState, createContext } from 'react';
+import { useState, createContext, useContext } from 'react';
 import { AuthService, EventService } from './services.js';
 
 export const UserContext = createContext(); 
 
 const authService = new AuthService();
-const eventService = new EventService();
+const eventService = new EventService(); 
 
 function UserProvider({children}) {
   const [userContext, setUserContext] = useState({
