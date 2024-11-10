@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './EventCreation.css';
+import { UserContext } from '../../App.js'; 
+
 import Modal from '../Modal/Modal';
 
 function EventCreation({ openCreation, closeCreation }) {
+  const { authService, eventService } = useContext(UserContext);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(e);
     const eventName = e.target.eventName.value;
     const eventLocation = e.target.eventLocation.value;
     const eventDate = e.target.eventDate.value;
@@ -17,20 +18,24 @@ function EventCreation({ openCreation, closeCreation }) {
     const eventSpeakers = e.target.eventSpeakers.value;
     const eventTags = e.target.eventTags.value;
 
-    // Create eventInfo object
     const eventInfo = {
       name: eventName,
+      userId: authService.id,
       location: eventLocation,
       startDate: eventDate,
       duration: eventDuration,
       description: eventDescription,
       speakers: eventSpeakers,
       tags: eventTags,
+      reviews: [],
       attendees: 0,
-      
+      coordinates: '',
+      completed: false
     };
 
-    setIsFormSubmitted(true); // Form is submitted
+    eventService.postEvent(eventInfo);
+    
+    setIsFormSubmitted(true); 
       setIsFormSubmitted(false); 
       closeCreation(false);
     }; 

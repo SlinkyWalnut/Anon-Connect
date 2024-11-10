@@ -11,7 +11,7 @@ import { EventService } from '../../services.js';
 function Profile() {
   const { isLoggedIn, authService, eventService } = useContext(UserContext);
   const [openEventsCreation, setOpenEventsCreation] = useState(false); 
-  const [logoutClicked, setLogoutClicked] = useState(false);
+  const [actionClicked, setActionClicked] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
   const [events, setEvents] = useState([]); 
 
@@ -55,15 +55,9 @@ function Profile() {
   const handleItemClick = (eventThread) => {
     setCurrentItem(eventThread);
   };
-  const logoutUser = () => {
-    authService.logoutUser();
-    setLogoutClicked(true);
-  }
+
   if (currentItem) {
     return <EventItem event={currentItem} />;
-  }
-  if(logoutClicked){
-    return <Home />
   }
 
   const completedEvents = events.filter(event => event.completed);
@@ -74,8 +68,8 @@ function Profile() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Banner */}
         <div className="banner bg-teal-600 text-white p-6 mb-6 rounded-lg text-center relative">
-          {authService.isLoggedIn && (
-            <button onClick={() => logoutUser()} className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-110">
+          {isLoggedIn && (
+            <button className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-110">
               Sign Out
             </button>
           )}
@@ -110,7 +104,7 @@ function Profile() {
               ))}
             </ul>
 
-            {authService.isLoggedIn && (
+            {isLoggedIn && (
               <button 
                 onClick={handleEventsClicked} 
                 className="mt-6 rounded-lg bg-teal-500 text-white py-2 px-6 hover:opacity-80 transform transition-all hover:scale-110">
