@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Profile Container */
+.profileContainer {
+    max-width: 1200px; /* Increased max-width for larger screens */
+    margin: 0 auto; /* Centering the container */
+    padding: 16px; /* Standard padding */
+    font-family: 'Courier New', monospace; /* Custom font */
+    background-color: #1e2a47; /* Dark blue background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft box-shadow */
+}
+
+/* Banner Styling */
+.banner {
+    background-color: #283593; /* Dark blue background */
+    color: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Events Section Layout */
+.events {
+    display: flex;
+    justify-content: space-between; /* Use space between for better distribution */
+    gap: 20px; /* Add gap for spacing */
+}
+
+/* Left Side: Events List */
+.leftSide {
+    width: 65%; /* Keeps the left side for the events list */
+    padding: 24px;
+    background-color: #37474f; /* Darker gray-blue */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Right Side: Rating and Contact */
+.rightSide {
+    width: 30%; /* Takes up 30% of the space */
+    padding: 24px;
+    background-color: #263238; /* Even darker gray-blue */
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Add Event Button */
+.addEventButton {
+    background-color: #1976d2; /* Blue background */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.addEventButton:hover {
+    background-color: #1565c0; /* Slightly darker blue on hover */
+}
+
+/* Events Container (List Styling) */
+.eventsContainer {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+/* Individual Event Item Styling */
+.eventsItem {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: #455a64; /* Darker gray for items */
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease; /* Smooth effects */
+}
+
+.eventsItem:hover {
+    background-color: #607d8b; /* Light blue-gray color on hover */
+    transform: scale(1.03); /* Slight zoom effect on hover */
+}
+
+/* Location Text (Black Color) */
+.location {
+    color: #000000; /* Change location color to black */
+}
+
+/* List items in the events container */
+.eventsContainer li {
+    margin-bottom: 1rem; /* Spacing between list items */
+    border-bottom: 1px solid #455a64; /* Dark gray divider */
+}
+
+/* Additional Media Queries for responsiveness */
+@media (max-width: 1024px) {
+    .events {
+        flex-direction: column; /* Stack the events list and details side by side */
+    }
+
+    .leftSide, .rightSide {
+        width: 100%; /* Full width on smaller screens */
+        margin-bottom: 20px; /* Add margin between the sections */
+    }
+}
+
