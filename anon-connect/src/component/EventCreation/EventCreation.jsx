@@ -15,7 +15,7 @@ const handleSubmit = (e) => {
     <div>
       {!isFormSubmitted && (
             <Modal title={"Event Creation"} isOpen={openCreation} close={closeCreation}>
-            <form onSubmit={handleSubmit} className="event-creation-form bg-light text-white">
+            <form onSubmit={handleSubmit} className="event-creation-form bg-grey text-white">
                 <label for='eventName' >Event Name</label>
                 <input className="input" type="text" id="eventName" name="eventName" placeholder="Your Event's Name"/>
                 <label for='Location' >Event Location</label>
@@ -25,8 +25,8 @@ const handleSubmit = (e) => {
                 <label for='eventDuration' >Event Duration</label>
                 <input className="input" type="number" id="eventDuration" name="eventDuration" placeholder="Duration in Minutes"/>
                 <label for='eventDescription' >Event Description</label>
-                <input className="input" type="text" id="eventSponsors" name="eventSponsors" placeholder="Your Event's Sponsors"/>
-                <label for='eventSpeakers' >Event Speakers</label>
+                <input className="input" type="text" id="eventDescription" name="eventDescription" placeholder="Your Event's Description"/>
+                <label for='eventSpeakers'>Event Speakers</label>
                 <input className="input" type="text" id="eventSpeakers" name="eventSpeakers" placeholder="Your Event's Speakers"/>
                 <label for='eventTags' >Event Tags</label>
                 <select className="select" type="text" id="eventTags" name="dropdown">

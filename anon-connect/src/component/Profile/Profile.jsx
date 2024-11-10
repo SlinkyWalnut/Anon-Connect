@@ -34,14 +34,21 @@ function Profile() {
   useEffect(() => {
 
   })
+const [currentItem, setCurrentItem] = useState(null);
+const handleItemClick = (eventThread) => {
+    setCurrentItem(eventThread);
+  };
 
+if (currentItem) {
+    return (
+      <EventItem event={currentItem} />
+    );
+  }
   const completedEvents = user.events.filter(event => event.completed);
   const currentEvents = user.events.filter(event => !event.completed);
     return (
       <div>
-      {actionClicked === 'Event Item' ? (
-        <EventItem />
-      ) : 
+
       <div>
         <div className="profileContainer">
           {/* Banner */}
@@ -57,7 +64,7 @@ function Profile() {
             <h2 className="text-xl font-semibold mb-4">Current Events</h2>
             <ul className="eventsContainer space-y-2">
               {currentEvents.map((event, index) => (
-                <li onClick={() => setActionClicked('Event Item')} key={index} className="cursor-pointer bg-gray-800 text-gray-300 p-3 rounded hover:bg-gray-400 hover:text-brown-800 hover:font-bold transition">
+                <li  onClick={() => handleItemClick(event)}  key={index} className="cursor-pointer bg-gray-800 text-gray-300 p-3 rounded hover:bg-gray-400 hover:text-brown-800 hover:font-bold transition">
                   <EventThread description={event.description} location={event.location} />
                 </li>
               ))}
@@ -66,7 +73,7 @@ function Profile() {
             <h2 className="text-xl font-semibold mt-6 mb-4">Past Events</h2>
             <ul className="eventsContainer space-y-2">
               {completedEvents.map((event, index) => (
-                <li onClick={() => setActionClicked('Event Item')} key={index} className="cursor-pointer bg-gray-700 text-gray-200 p-3 rounded hover:bg-gray-400 hover:text-brown-800 hover:font-bold transition">
+                <li onClick={() => handleItemClick(event)} key={index} className="cursor-pointer bg-gray-700 text-gray-200 p-3 rounded hover:bg-gray-400 hover:text-brown-800 hover:font-bold transition">
                   <EventThread description={event.description} location={event.location} />
                 </li>
               ))}
@@ -104,7 +111,6 @@ function Profile() {
       </div>
       <EventCreation openCreation={openEventsCreation} closeCreation={setOpenEventsCreation}/>
       </div>
-    }
       </div>
     );
   }
