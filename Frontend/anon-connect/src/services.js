@@ -151,4 +151,29 @@ export class EventService {
             throw error;
         }
     }
+    getEvent = async (eventId) => {
+        try {
+            const event = await axios.get(`${LOCAL_URL_EVENTS}/${eventId}`);
+            return event;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
+    addEventReview = async (eventInfo, review) => {
+        const reviewInfo = {
+            "rating": review.rating,
+            "description": review.description,
+
+        }
+        try {
+            const response = await axios.put(`${LOCAL_URL_EVENTS}/add-event-rating/${eventInfo._id}`);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+    
 }

@@ -41,6 +41,7 @@ function UserProvider({children}) {
   });
   const context = {
     authService,
+    eventService,
     user: userContext.user,
     isLoggedIn: userContext.isLoggedIn,
     setUser: (targetUser) => {
