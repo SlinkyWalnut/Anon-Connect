@@ -31,7 +31,7 @@ function EventItem({ event }) {
 
 
   if (actionClicked === 'Profile') {
-    return <Profile hostId={userId}/>;
+    return <Profile />;
   }
 
 

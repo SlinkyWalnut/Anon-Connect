@@ -44,13 +44,8 @@ function EventCreation({ openCreation, closeCreation }) {
       tags: eventTags,
       reviews: [],
       attendees: 0,
-<<<<<<< HEAD
       coordinates: '',
       completed: getRandomValue()
-=======
-      coordinates: latLongPairs[randomNum],
-      completed: false
->>>>>>> 4ed619552e2ddcfce588eba32adb8466f3a21787
     };
 
     eventService.postEvent(eventInfo);
