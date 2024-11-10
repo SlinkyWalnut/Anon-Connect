@@ -6,30 +6,32 @@ import EventThread from '../EventDisplay/EventThread/EventThread.jsx';
 import EventItem from "../EventDisplay/EventItem/EventItem.jsx";
 import StarRating from './StarRating.jsx'; 
 import Home from '../Home/Home.jsx';
+import { EventService } from '../../services.js';
 
 function Profile() {
-  const { isLoggedIn, authService } = useContext(UserContext);
+  const { isLoggedIn, authService, eventService } = useContext(UserContext);
   const [openEventsCreation, setOpenEventsCreation] = useState(false); 
   const [logoutClicked, setLogoutClicked] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
+  const [events, setEvents] = useState([]); 
 
   const handleEventsClicked = () => {
     setOpenEventsCreation(!openEventsCreation); 
   };
 
-  // const user = {
-  //   organization: "Alcoholics Anonymous", 
-  //   description: "We host continuous meetings for recovering alcoholics!", 
-  //   location: "4531 Druggie Ave", 
-  //   rating: 3.5, 
-  //   events: [
-  //     { name: "Consultation", completed: true, location: "1234 Bensonhurst Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
-  //     { name: "Group Therapy", completed: true, location: "44 West 4th St, New York, NY 10012", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
-  //     { name: "Movie Night", completed: false, location: "234 W 42nd St, New York, NY 10036", description: "We're watching Coraline!!" }, 
-  //     { name: "Pizza and Chat", completed: false, location: "7 Carmine St, New York, NY 10014", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
-  //   ], 
-  //   contactInfo: ["123-456-7890", 'WeHelpDruggies@AcolAnon.org'],
-  // };
+  const user = {
+    organization: "Alcoholics Anonymous", 
+    description: "We host continuous meetings for recovering alcoholics!", 
+    location: "4531 Druggie Ave", 
+    rating: 3.5, 
+    events: [
+      { name: "Consultation", completed: true, location: "1234 Bensonhurst Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
+      { name: "Group Therapy", completed: true, location: "44 West 4th St, New York, NY 10012", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
+      { name: "Movie Night", completed: false, location: "234 W 42nd St, New York, NY 10036", description: "We're watching Coraline!!" }, 
+      { name: "Pizza and Chat", completed: false, location: "7 Carmine St, New York, NY 10014", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
+    ], 
+    contactInfo: ["123-456-7890", 'WeHelpDruggies@AcolAnon.org'],
+  };
 
   const USER = {
     "id": authService.id,
@@ -40,9 +42,15 @@ function Profile() {
     "rating": authService.rating
   };
 
+
   useEffect(() => {
-    EventService.getAl
-  }, []);  // No changes here for now
+    eventService.getAllEvents().then((data) => {
+      if (Array.isArray(data)) { 
+        const userHostings = data.filter(hosting => hosting.user_id === USER.id)
+        setEvents(events); 
+      }
+  }) 
+  }, [events]);  
 
   const handleItemClick = (eventThread) => {
     setCurrentItem(eventThread);
@@ -58,9 +66,8 @@ function Profile() {
     return <Home />
   }
 
-  //const completedEvents = USER.events.filter(event => event.completed);
-  // const currentEvents = USER.events.filter(event => !event.completed);
-
+  const completedEvents = events.filter(event => event.completed);
+  const currentEvents = events.filter(event => !event.completed);
 
   return (
     <div className="profileContainer bg-gray-800 min-h-screen py-6">
@@ -129,7 +136,7 @@ function Profile() {
             <div className="p-4 bg-gray-600 rounded-lg w-full">
               <h2 className="underline text-lg font-semibold mb-2 text-gray-300">Contact Us!</h2>
               <ul className=" text-sm ml-6 text-gray-300">
-                {USER.contactInfo.map((info, index) => (
+                {user.contactInfo.map((info, index) => (
                   <li key={index}>{info}</li>
                 ))}
               </ul>
