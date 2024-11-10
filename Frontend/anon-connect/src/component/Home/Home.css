@@ -1,0 +1,36 @@
+.info-hover {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: black;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: "Lucida Console", monospace;
+    white-space: nowrap;
+    margin-top: 8px;
+    z-index: 10;
+}
+
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.button-container {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+}
+
+
+.button-container:hover .info-hover{
+    display: block;
+}

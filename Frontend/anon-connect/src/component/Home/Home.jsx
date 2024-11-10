@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import "./Home.css"
 import EventDisplay from '../EventDisplay/EventDisplay';
 import Login from '../Auth/Login/Login';
+import "./Home.css";
+
+
 function Home() {
   const [actionClicked, setActionClicked] = useState("home");
+
 
   const handleClicks = () => {
     if (actionClicked === 'organizer') {
@@ -28,24 +32,32 @@ function Home() {
             </p>
           </div>
 
+
           <div className="mt-8 flex justify-center space-x-4">
-            <button
-              onClick={() => setActionClicked('organizer')}
-              className="transition-all duration-300 transform hover:scale-105 rounded-lg bg-primary text-white text-lg py-3 px-8 shadow-lg hover:shadow-xl focus:outline-none"
-            >
-              Organizer
-            </button>
+            <div className="button-container">
+              <button
+                onClick={() => setActionClicked('organizer')}
+                className="hover-button transition-all duration-300 transform hover:scale-105 rounded-lg bg-primary text-white text-lg py-3 px-8 shadow-lg hover:shadow-xl focus:outline-none"
+              >
+                Organizer
+              </button>
+              <div className='info-hover bg-green-200'>Click Here if You're an Organizer Looking to Advertise Your Event!</div>
+            </div>
+            <div className='button-container'>
             <button
               onClick={() => setActionClicked('events')}
-              className="transition-all duration-300 transform hover:scale-105 rounded-lg bg-accent text-white text-lg py-3 px-8 shadow-lg hover:shadow-xl focus:outline-none"
+              className="hover-button transition-all duration-300 transform hover:scale-105 rounded-lg bg-secondary text-white text-lg py-3 px-8 shadow-lg hover:shadow-xl focus:outline-none"
             >
               Events
             </button>
+            <div className='info-hover bg-orange-200'>Click Here if You're Looking for Events to Attend!</div>
+            </div>
           </div>
         </div>
       );
     }
   };
+
 
   return (
     <div>
@@ -54,4 +66,7 @@ function Home() {
   );
 }
 
+
 export default Home;
+
+

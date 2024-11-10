@@ -14,21 +14,21 @@ function EventDisplay() {
       location: "12345 street ave",
       name: "Cold turkey",
       attendees: 0,
-      coordinates: { lat: 40.7128, lng: -74.0060 },
+      coordinates: { lat: 40.7306, lng: -73.9352 },
     },
     {
       description: "Event for alcoholics to become clean.",
       location: "67890 ave",
       name: "More drugs",
       attendees: 0,
-      coordinates: { lat: 34.0522, lng: -118.2437 },
+      coordinates: { lat: 40.7580, lng: -73.9855 },
     },
     {
       description: "Therapy Consultation for Psychiatric Patients",
       location: "56th street",
       name: "GetHelp",
       attendees: 0,
-      coordinates: { lat: 46.0522, lng: -112.2437 },
+      coordinates: { lat: 40.6915, lng: -73.9875 },
       },
   ];
 

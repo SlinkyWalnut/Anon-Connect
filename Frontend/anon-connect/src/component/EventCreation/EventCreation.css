@@ -1,5 +1,5 @@
 .input, .select {
-    background-color: #00000094; 
+    background-color: #cfc2c294; 
     color: #333; 
     padding: 10px 15px;
     border-radius: 5px;
@@ -18,7 +18,7 @@
   }
   
   .input::placeholder, .select::placeholder {
-    color: #888;
+    color: #3d3c3c;
   }
 
 .input-submit {
@@ -44,4 +44,5 @@
 .event-creation-form label{
     margin-right: 5px; 
 }
+
 
