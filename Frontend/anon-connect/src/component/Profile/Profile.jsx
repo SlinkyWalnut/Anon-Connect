@@ -41,13 +41,13 @@ function Profile() {
   const user = {
     organization: "Alcoholics Anonymous", 
     description: "We host continuous meetings for recovering alcoholics!", 
-    location: "4531 Druggie Ave", 
+    location: "6 Metrotech Center New York, NY", 
     rating: 3.5, 
     events: [
-      { name: "Consultation", completed: true, location: "4531 Druggie Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
-      { name: "Group Therapy", completed: true, location: "4531 Druggie Ave", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
-      { name: "Movie Night", completed: false, location: "4531 Druggie Ave", description: "We're watching Coraline!!" }, 
-      { name: "Pizza and Chat", completed: false, location: "4531 Druggie Ave", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
+      { name: "Consultation", completed: true, location: "4531 Heaven Ave", description: "Meet with a therapist to discuss your struggles with alcohol." }, 
+      { name: "Group Therapy", completed: true, location: "4531 West 4th street New York, NY", description: "Meet with other struggling alcoholics and talk about your experience together." }, 
+      { name: "Movie Night", completed: false, location: "298 Mulberry St New York, NY", description: "We're watching The Big Short!!" }, 
+      { name: "Pizza and Chat", completed: false, location: "7 Carmine St New York, NY", description: "Come get free pizza and talk to our free sponsors that provide opportunities and motivation for recovering!" }
     ], 
     contactInfo: ["123-456-7890", 'WeHelpDruggies@AcolAnon.org'],
   };
