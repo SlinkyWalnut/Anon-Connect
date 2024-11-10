@@ -59,7 +59,7 @@ export class AuthService extends User{
     
     getAccounts = async () => {
         try {
-            const response = await axios.post(LOCAL_URL_ACCOUNTS);
+            const response = await axios.get(LOCAL_URL_ACCOUNTS);
             return response;
             
         } catch (error) {
@@ -82,16 +82,16 @@ export class AuthService extends User{
             const {data} = res.data;
             data.forEach((account) => {
                 if (account.name === username && account.password === password) {
-                    this.findUserByName(username).then((targetUser) => {
+                    console.log(account);
+                    this.findUserByName(account.name).then((targetUser) => {
                         const {user} = targetUser.data;
-                        this.setUserData(user, account._id);
+                        this.setUserData(user, user._id);
                     })
                     this.setIsLoggedIn(true);
-                    return this.isLoggedIn;
-                } else {
-                    console.log("No user with email " + username + " or wrong password.");
-                    return this.isLoggedIn;
-                }
+                    return true;
+                } 
+                console.log("No user with email " + username + " or wrong password.");
+                return false;
             })
         })
        }
