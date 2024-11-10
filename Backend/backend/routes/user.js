@@ -6,7 +6,8 @@ const {
     getUsers,
     findUser,
     createUser,
-    deleteUser
+    deleteUser,
+    findUserByName
 } = require('../controllers/user');
 
 router.route('/')
@@ -16,5 +17,8 @@ router.route('/')
 router.route('/:id')
     .get(findUser)
     .delete(deleteUser);
+
+router.route('/findUsername/:id')
+    .get(findUserByName);
 
 module.exports = router;
