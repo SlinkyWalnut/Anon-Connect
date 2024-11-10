@@ -78,7 +78,7 @@ function Profile() {
                 <li 
                   onClick={() => handleItemClick(event)} 
                   key={index} 
-                  className="cursor-pointer bg-gray-300 text-white p-4 rounded-lg transition-all hover:bg-gray-100 hover:text-white hover:scale-105">
+                  className="cursor-pointer bg-gray-300 text-white p-4 rounded-lg transition-all hover:bg-gray- hover:text-white hover:scale-105">
                   <EventThread description={event.description} location={event.location} />
                 </li>
               ))}
