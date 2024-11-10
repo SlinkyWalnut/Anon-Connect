@@ -6,6 +6,7 @@ import { AuthService } from './services.js';
 export const UserContext = createContext(); 
 
 const authService = new AuthService();
+const eventService = new EventService(); 
 
 function UserProvider({children}) {
   const [userContext, setUserContext] = useState({
