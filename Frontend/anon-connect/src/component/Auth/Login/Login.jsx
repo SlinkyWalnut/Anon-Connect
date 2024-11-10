@@ -9,7 +9,8 @@ function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [openRegister, setOpenRegister] = useState(false);
-  const [clickedAction, setClickedAction] = useState("home");
+  const [errorText, setErrorText] = useState('');
+  const [error, setError] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   
   useEffect(() => {
@@ -20,12 +21,19 @@ function LoginForm() {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
-    if(username && password){
-      if(user.username === username && user.password === password){
-        setIsLoggedIn(true);
-      }
+    if(username.length && password.length){
+      authService.loginUser(username, password).then((isLoggedIn) => {
+        console.log(isLoggedIn);
+        if(authService.isLoggedIn){
+          setErrorText('');
+          setShowProfile(true);
+        } else {
+          setErrorText("Incorrect email or password.");
+        }
+      }).catch((err) => {
+        console.error("error in logging in", err);
+        setError(true);
+      })
     }
   };
   const registerClicked = () => {
@@ -76,13 +84,13 @@ function LoginForm() {
         <div className="flex items-center justify-center mb-4">
           <button
             type="submit"
-            onClick={() => setClickedAction("hasLoggedIn")}
             className="bg-primary hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transform transition-transform hover:scale-105 duration-300 ease-in-out"
           >
             Log in
           </button>
         </div>
-        
+        {errorText.length ? <p style={{marginBottom: '20px'}} className="text-red-700">{errorText}</p> : <p></p>}
+        {error ? <p style={{marginBottom: '20px'}} className="text-red-700">Login failed.</p> : <p></p>}
         <div className="text-center">
           <span className="text-dark">Don't have an account? </span>
           <span onClick={registerClicked} className="text-accent cursor-pointer hover:underline">
