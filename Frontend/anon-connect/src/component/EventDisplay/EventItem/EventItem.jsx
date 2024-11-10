@@ -22,7 +22,7 @@ function EventItem({ event = {} }) {
 
 
   const handleRsvpClick = () => {
-    if (!rsvpClicked) {
+    if (!rsvpClicked && !isLoggedIn) {
       setRsvpCount((prevCount) => prevCount + 1);
       setRsvpClicked(true);
     }
@@ -61,7 +61,7 @@ function EventItem({ event = {} }) {
                 <>
                   <button
                     onClick={handleRsvpClick}
-                    className={`w-full py-2 rounded-lg border border-green-500 transition-colors ${rsvpClicked ? 'bg-green-700' : 'bg-green-500 hover:bg-green-600'} text-white`}
+                    className={`w-full py-2 rounded-lg border border-green-500 transition-colors ${!isLoggedIn ?(!rsvpClicked ?('bg-green-500 hover:bg-green-600') : ( 'bg-green-700' )) : ('bg-green-500')} text-white`}
                   >
                     {!isLoggedIn ? ( !rsvpClicked ? (<p>RSVP!</p>) : (<p>We'll see you there!</p>)) : (<p>Attendees: {rsvpCount}</p>)}
                   </button>
